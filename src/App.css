@@ -1,0 +1,495 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;1,400&family=Rubik+Glitch&display=swap');
+html,body{
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Rubik Glitch', cursive;
+}
+:root {
+  --main-bg-color: rgb(82, 37, 6)  ; /* Define a global background color variable */
+  --text-color: saddlebrown;
+  ; /* Define a global text color variable */
+}
+
+
+
+  /*---------------- promotion text---------------- */
+
+  .promotionText{
+    font-size: 12pt;
+  }
+    /* ---------------------NavBar_Bg----------------  */
+    .NavBar_Bg{
+      background-color: #ebebeb;
+    }
+
+  /* --------------------------------nav bar navIcons------------------- */
+
+  .navLink_icons{
+    padding: 5px;
+  }
+  .icons{
+    font-size: 22px !important;
+    font-weight: 900 !important;
+  }
+  .icons:hover{
+    color: var(--text-color) !important;
+  }
+  .navLink_icons:hover{
+    color: var(--text-color) !important;
+  
+    
+  }
+
+  /* ----------------------------------- NavBarFooter inner icons active----------------------------- */
+  .navLink_icons_active{
+    /* padding-bottom: 10px; */
+    border-right: 4px solid var(--text-color);
+  }
+/* ----------------------------------- cart div ---------------------------------- */
+
+input:focus
+{
+    border: 1px solid #e2e3e4 !important;
+    box-shadow: 0 0 3px #dadcde !important;
+    outline-offset: 0px;
+    outline: none;
+}
+.button:focus{
+  border: 1px solid #e2e3e4 !important;
+  box-shadow: 0 0 3px #dadcde !important;
+  outline-offset: 0px;
+  outline: none;
+}
+
+/* carousel-indicators button */
+.carousel-indicators > div{
+  width: 100px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.458);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  text-align: center;
+}
+.carousel-indicators > div > button {
+  width: 6px !important;
+  height: 6px !important;
+  
+  background-color: rgb(84, 83, 83) !important;
+}
+.carousel-indicators > div > button.active{
+  width: 8px !important;
+  height: 7px !important;
+  padding-top: 2px;
+  border-radius: 100%;
+  background-color: var(--main-bg-color) !important;
+}
+.carousel-item{
+  width: 100%;
+  height: 200px;
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.panner_image{
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+}
+
+
+/* cartItems_Scroll  */  
+/* --------------------------------------- old one --------------*/
+.cartItems_Scroll{
+  height: 74vh !important;     
+  scroll-behavior:smooth;
+}
+.my-order{
+  height: 8vh !important;
+}
+.asideBg_color_footer{
+  height: 18vh !important;
+}
+
+/* side btn icon */
+.lineone{
+  width: 30px;
+  height: 4px;
+  background-color: rgb(1, 1, 1);
+}
+.lineone:nth-child(2){
+  width: 22px; 
+}
+.lineone:nth-child(3){
+  width: 15px; 
+  height: 4px;
+}
+/* add item text */
+
+.fontGold{
+  color: black;
+  text-shadow: 1px 1px 1px var(--text-color);
+  font-weight: 600;
+  font-size: 12pt;
+  transform: matrix(360deg);
+  transition: all 0.5s linear;
+  opacity: 0.5;
+}
+.rupesText{
+  font-size: 12pt;
+  font-weight: 600;
+}
+.asideBg_color{
+  background-color: rgba(221, 221, 221,0.598);
+}
+.asideBg_color_footer{
+  background-color: rgba(221, 221, 221,0.998);
+  z-index: 5;
+}
+
+
+
+/* btn_menu */
+
+.btn_menu{
+  background: var(--main-bg-color) !important; 
+  font-size: 10pt !important;
+  font-weight: 500 !important;
+  color: rgb(255, 255, 255) !important;
+}
+.button:focus{
+  border: none !important;
+}
+.btn_menu:hover{
+  background-color: rgba(215, 215, 215, 0.108) !important;
+  color:var(--text-color) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom:2px solid #d2691e !important ;
+}
+
+/* button after pseudo code */
+
+.bg_gold{
+  background-color: rgba(242, 217, 153, 0.541);
+}
+.cardtext{
+  font-size: 10pt !important;
+  opacity: 0.5;
+}
+/* btn_coupen */
+.btn_coupen{
+  font-weight: 500 !important;
+}
+.find_text{
+  font-size: 12pt !important;
+  word-break: break-all;
+}
+.btn_coupen:hover{
+  background-color: white !important;
+}
+/* z-index */
+
+.z_index{
+  z-index: 1;
+}
+/* ====== */
+.front_corsur{
+  cursor: pointer;
+}
+/* filter icons */
+
+.filler_icon{
+ font-size: 15pt;
+ margin-left: 5px;
+}
+.filler_icon:hover{
+  color:  var(--text-color);
+}
+
+/* location font */
+.location_font{
+  font-size: 10px;
+}
+
+/* SideCardTitle */
+
+.asideCartHeader{
+  font-size: 6pt;
+  font-weight: 900;
+}
+
+/* SideCardprice */
+.SideCardprice{
+  font-size: 10pt;
+  font-weight: 700;
+}
+/* Delivery_font */
+.Delivery_font{
+  font-size: 10pt;
+  font-weight: 400;
+}
+/* slidecardAddress */
+.slidecardAddress{
+  font-size: 14pt;
+}
+
+
+
+
+/* badge */
+
+.badge{
+  font-size: 7pt !important;
+}
+
+
+/* bootstrap button change */
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+/* DeliveryOption */
+
+.DeliveryOption{
+  width: 30px !important;
+}
+/* pickupOption */
+.pickupOption{
+  width: 30px !important;
+}
+
+/* OrderOption */
+.OrderOption{
+  width: 30px !important;
+  height: 30px;
+}
+
+/* ----------------- Aside Footer Button ----------------- */
+.Asidefooter{
+  width: 80% !important;
+}
+
+
+/* button categories */
+
+@media only screen  and (max-width:992px) and (min-width:0) {
+
+  /*--------------------------- home Main Div----------------------- */
+  .homeMainDiv{
+    width: 100% !important;
+    padding-bottom: 10%;
+  }
+  .navLink_icons_active{
+    color: var(--text-color) !important;
+    border-right: 0px !important;
+  }
+  .NavBarFooter_inner_icons_active{
+    color: var(--text-color) !important;
+  }
+
+  .active_icons{
+   color: var(--main-bg-color) !important;
+  }
+  
+  /* app.js css */
+
+  /* -------------------------------- nav bar footer convert ------------------------------  */
+
+  .NavBarFooter{
+    position: fixed;
+    width: 100% !important;
+    min-height: 50px !important;
+    z-index: 4;
+    top: 93%;
+  }
+  .NavBar_Bg{
+    /* background-color: white !important; */
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+  }
+  .NavBarFooter_inner{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(255, 255, 255, 0.892) !important;
+    padding: 5px 0px;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+  }
+  .NavBarFooter_inner_icons{
+    position: absolute;
+    padding: 14px 10px 8px 10px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-width: 0px ;
+    top: -10px;
+    transition: all 0.3s linear;
+  }
+
+  .sidebar_main_inner{
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e3e4;
+  }
+
+  .offcanvas{
+    display: none;
+  }
+
+  /*------------------------- Navbar link ------------------- */
+  .navLink_icons:hover{
+    color: var(--text-color) !important;
+  
+    
+  }
+  
+
+
+  /*------------------ barge--------------- */
+  #badgeChangePosition{
+    top: 35% !important;
+    margin-left: -5px;
+  }
+
+  /*---------------- promotion text---------------- */
+
+.promotionText{
+  font-size: 7pt;
+}
+  .card{
+    width: 12rem !important;
+  }
+  .filler_icon:hover{
+    border: none;
+    color: var(--text-color) !important;
+  }  
+
+  /* ------------------ panner ------------------- */
+
+  .carousel-item{
+    width: 100%;
+    height: 120px;
+    background-color: rgb(255, 255, 255) !important;
+  }
+  .panner_image{
+    max-width: 100%;
+    object-fit: cover;
+    /* height: 120px !important; */
+    /* display: block; Remove any extra spacing caused by inline elements */
+    /* margin: 0 auto; */
+  }
+  
+  /* -------------------------- pannner buttons----------------- */
+
+  .carousel-indicators > div{
+    width: 70px;
+    height: 12px;
+    
+    background-color: rgba(255, 255, 255, 0.378);
+   
+  }
+  .carousel-indicators > div > button {
+    width: 4px !important;
+    height: 4px !important;   
+    background-color: rgb(84, 83, 83) !important;
+  }
+  .carousel-indicators > div > button.active{
+    width: 7px !important;
+    height: 5px !important;
+    padding-top: 2px;
+    border-radius: 50%;
+    background-color: var(--main-bg-color) !important;
+  }
+
+  /* categaries button animation */
+  /* .swiper {
+    width: 100%;
+    height: 100%;
+  } */
+  
+  /* .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff; */
+  
+    /* Center slide text vertically */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  
+  /* .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  } */
+
+  /* ------------end */
+
+
+.card-titles{
+  font-size: 10pt !important;
+}
+.plubtn{
+  font-size: 14px !important;
+}
+.cardtext{
+  font-size: 10px !important;
+  font-weight: 600;
+}
+  .black{
+    background-color: black !important;
+  }
+  .btn_menu{
+    font-size: 12px !important;
+    font-weight: 700 !important;
+  
+  }
+    
+/* buttons scrollable */
+
+
+
+}
+
+/* delivery */
+
+/* Add styles for larger screens */
+@media screen and (min-width: 768px) {
+  /* Adjust the form layout for larger screens */
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Add more responsive styles as needed */
+}
+
+/* Add styles for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Adjust the form layout for smaller screens */
+  form {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  /* Modify styles for form elements on smaller screens */
+  label {
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+  }
+
+  /* Add more responsive styles as needed */
+}

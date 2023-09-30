@@ -1,0 +1,92 @@
+.form-control:focus {
+    outline:none !important;
+    border: none !important;
+    box-shadow: none;
+    border-bottom: 0.1px solid black !important;
+    }
+.input:focus{
+    border: none !important;
+}
+
+::placeholder{
+    padding: 3px;
+    font-size: 9pt !important;
+}
+#comments:focus{
+    outline:none !important;
+    border: none !important;
+    box-shadow: none;
+    border-bottom: 0.1px solid black !important;
+    }
+
+/* ------------ nav link  */
+
+.nav-link:visited,.nav-link a:visited
+{
+   color: rgb(36, 36, 34) !important;
+   outline: 2px;
+}
+
+.nav>li>a:focus,.actives{
+    text-decoration: white !important;
+    color: rgb(255, 189, 67) !important;
+    background-color: #eee;
+    border-bottom: 2px solid rgb(255, 189, 67) !important;
+}
+.nav>li>a:hover{
+    background-color: #eee ;
+}
+    /* --------------------------- form font headers------------------- */
+
+    .font_Headers{
+        font-size: 10pt;
+        font-weight: 600;
+    }
+
+    /* -------------------- whatsapp Button  ------------------- */
+
+    .whatsappBtn{
+        background-color: var(--main-bg-color) !important;
+        font-weight: 600 !important;
+        color: white !important;
+    }
+    .whatsappBtn:hover{
+        background-color: white !important;
+        color:var(--text-color) !important;
+    }
+    /* delivery types buttons */
+    .DeliveryTypeBTn{
+        background-color: white !important;
+    }
+    .DeliveryTypeBTn:hover{
+        border: none !important;
+        color: rgb(255, 186, 58) !important;
+        border-bottom: 2px solid  rgb(255, 186, 58) !important;
+    }
+
+
+    /* formScrolling css  */
+    /* .formScroll{
+        width: 100%;
+        height: 200px;
+    } */
+
+    /* Error message */
+
+    .error{
+        font-size: 8pt;
+        padding: 5px;
+    }
+
+
+    /*---------------------------- media query --------------------------- */
+
+@media only screen  and (max-width:992px) and (min-width:0) {
+    /* .Delivery_OuterWrapper{ */
+        /* height: 100dvi; */
+    /* } */
+    .whatsappBtnWrapper{
+        position:none !important;
+        /* bottom: auto; */
+    }
+}
