@@ -276,22 +276,22 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
             {/*-------------------------- Button scroll mobile view  -----------------------------*/}
             <div className="slider-container position-sticky top-0 d-md-none">
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(biriyanilist)}>Biryani</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Mutton Dishes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(fish_Dishes)}>Fish Dishes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(Chicken_Dishes)}>Chicken Dishes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(egg_Dishes)}>Egg Dishes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(biriyanilist)}>Celebration Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Chocolate Truffle Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(fish_Dishes)}>Single Pastries</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(Chicken_Dishes)}>Chocolate Gift Boxes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(egg_Dishes)}>Chocolate Bars</button></div>
                {/* Add more slider items as needed */}
             </div>
 
             
             <div className=' d-none d-lg-block py-2' >
               <div className=' d-flex flex-wrap gap-4' >
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(biriyanilist)}>Biryani</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Mutton Dishes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(fish_Dishes)}>Fish Dishes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(Chicken_Dishes)}>Chicken Dishes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(egg_Dishes)}>Egg Dishes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(biriyanilist)}>Celebration Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Chocolate Truffle Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(fish_Dishes)}>Single Pastries</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(Chicken_Dishes)}>Chocolate Gift Boxes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(egg_Dishes)}>Chocolate Bars</button>
               </div>
             </div>
           </div>
