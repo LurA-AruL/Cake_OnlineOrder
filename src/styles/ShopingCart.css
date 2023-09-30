@@ -114,7 +114,7 @@
   
   .slider-item {
     display: inline-block;
-    width: 120px; /* Adjust the width as needed */
+    min-width: 120px; /* Adjust the width as needed */
     /* background-color: #ccc; */
     margin-right: 8px; /* Adjust spacing between items */
   }
