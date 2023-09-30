@@ -85,7 +85,7 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount}) {
       const message = `
 *Dear Customer,*
 
-Thank you for placing an order with *Salem Biriyani* hotel 😋.
+Thank you for placing an order with *Zuka Chocolate* 😋.
 
 *Your Order Details:* 📋
 
