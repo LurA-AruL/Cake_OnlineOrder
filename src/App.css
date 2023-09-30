@@ -283,7 +283,7 @@ input:focus
   /*--------------------------- home Main Div----------------------- */
   .homeMainDiv{
     width: 100% !important;
-    padding-bottom: 10%;
+    padding-bottom: 20%;
   }
   .navLink_icons_active{
     color: var(--text-color) !important;
