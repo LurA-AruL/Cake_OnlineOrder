@@ -33,7 +33,7 @@
 /* plubtn */
 
 .plubtn{
-    background-color: #d2691e !important;
+    background-color: var(--main-bg-color) !important;
     font-size: 12pt !important;
     
   }
@@ -161,7 +161,7 @@
   .footerCartrMb{
     width: 80% !important;
     left: 10%;
-    background-color: #d2691e !important;
+    background-color: var(--main-bg-color) !important;
     bottom: 65px;
     z-index: 3;
     transition:  0s, 0.5s linear;
