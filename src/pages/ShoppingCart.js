@@ -319,13 +319,13 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
                 : 
                 apiData.map((currentData) => (
                   <div className="card col-1 my-lg-1 cardOuterWrapper" style={{ width: 17 + "rem" }} key={currentData.id}>
-                      <div className='position-relative '>
-                          <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> {/* onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
+                      <div className='position-relative ImageWrapper'>
+                          {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
                           <img src={currentData.images.map(e => e.src)} className="card-img-top p-2 cart_imgae"  alt="no image found" />
                       </div>
-                      <div className="card-body">
-                          <div className='d-flex justify-content-between'><h5 className="Shoping_cartTitle card-title">{currentData.name}</h5></div>
-                          <div className='d-flex  justify-content-between'><div className='d-flex flex-column '><span className='CartPriceHome pt-1'>{currentData.price ? "Price: "+ currentData.price : <></>}</span><span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price ? "Regular Price: " + currentData.regular_price :<></>}</span></div> <div><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src), event: e.target.id })}>Add</button></div></div>
+                      <div className="card-body px-0">
+                          <div className='d-flex justify-content-between'><div className='d-flex flex-column px-2'><h5 className="Shoping_cartTitle card-title p-0 m-0">{currentData.name}</h5><span className='CartPriceHome pt-1'>{currentData.price ? "Price: "+ currentData.price : <></>}</span><span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price ? "Regular Price: " + currentData.regular_price :<></>}</span></div> <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src), event: e.target.id })}>Add</button></div></div>
+                          <div className='d-flex  justify-content-between'></div>
                           <div className='position-absolute top-100 start-50 translate-middle'>
                               {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                           </div>
