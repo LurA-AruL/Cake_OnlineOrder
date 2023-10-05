@@ -36,8 +36,10 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
     const [isLoadingPage, setIsLoadingPage] = useState(true);
 
     // ------------------------ changing categeries values ----------------
-    
-    const [changeApiCount,SetChangeApiCount] = useState(5);
+      const [listCategories,setListCategories] = useState([48])
+      const [changeApiCount,SetChangeApiCount] = useState(5);
+
+
 
     useEffect(() => {
          const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -45,21 +47,61 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
          inputvalueGetFun(); 
         //  ------------------------------Api get Method---------------------
           fetchData();
-     }, [Cartdetails,itemsSearchValue,changeApiCount]);
+        // -------------- categories api functions ----------------- 
+        fetchListCategories();
+     }, [Cartdetails,itemsSearchValue]);
      
 
      const handleCategries = (event) => {
+      console.log("hai ji come on");
         setIsLoadingPage(true);
-        SetChangeApiCount(event);
+        // SetChangeApiCount(event);
+        fetchCategories(event);
      }
+
+
+  // -------------------------list of categories function---------------------
+  const fetchListCategories = async (event) => {
+    try {
+
+      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products/categories?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
+      setListCategories(response.data);
+
+      console.log(response.data,'Categories list');
+      
+      setIsLoadingPage(false);
+
+    } catch (error) {
+
+      console.error('Error fetching data:', error);
+      // Handle errors here
+    }
+  };
+  // -----------------------------------Fetch api from categories -----------------------
+  const fetchCategories = async (event) => {
+    try {  
+      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?categories=${event}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=3&per_page=7`);
+      setApiData(response.data);
+
+      console.log(response.data,'checking api');
+      
+      setIsLoadingPage(false);
+
+    } catch (error) {
+
+      console.error('Error fetching data:', error);
+      // Handle errors here
+    }
+  };
 
   //  ---------------------------------- Fetch Api Axois Methods -------------------------
 
   const fetchData = async () => {
     try {
-
-      const response = await axios.get(`https://srivenkateshwarasweets.in/wp-json/wc/v3/products?page=${changeApiCount}&consumer_key=ck_b31cbf4a99a70c0c02f682eeae469b7cbfc774c0&consumer_secret=cs_0d51924fb90c2a413674ca4bd37d54955178f2f9`);
+      
+      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=3&per_page=10`);
       setApiData(response.data);
+      console.log(response.data,'cat');
       setIsLoadingPage(false);
 
     } catch (error) {
@@ -111,11 +153,11 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
             {/*-------------------------- Button scroll mobile view  -----------------------------*/}
             <div className="slider-container position-sticky top-0 d-md-none">
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(2)}>Celebration Cakes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(3)}>Chocolate Truffle Cakes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(10)}>Single Pastries</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(7)}>Chocolate Gift Boxes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(6)}>Chocolate Bars</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(46)}>Celebration Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(48)}>Chocolate Truffle Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(1)}>Single Pastries</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(31)}>Chocolate Gift Boxes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(22)}>Chocolate Bars</button></div>
                {/* Add more slider items as needed */}
             </div>
 
@@ -123,11 +165,14 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
             
             <div className=' d-none d-lg-block py-2' >
               <div className=' d-flex flex-wrap gap-4' >
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(2)}>Celebration Cakes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(3)}>Chocolate Truffle Cakes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(10)}>Single Pastries</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(7)}>Chocolate Gift Boxes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(6)}>Chocolate Bars</button>
+                {/* {listCategories.map(e => (
+                  <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(46)}>{e.name}</button>
+                ))} */}
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(46)}>Celebration Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(48)}>Chocolate Truffle Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(1)}>Single Pastries</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(31)}>Chocolate Gift Boxes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(22)}>Chocolate Bars</button>
               </div>
             </div>
             
@@ -166,15 +211,24 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
                       <div className='ImageWrapper'>
                           <div className='ImageInner'>
                             {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
-                            <img src={currentData.images.map(e => e.src)} className="card-img-top cart_imgae"  alt="no image found" />  
+                            <img src={currentData.images.length > 1 ? currentData.images[0].src : currentData.images.map(e => e.src)} className="card-img-top cart_imgae"  alt="no image found" />  
                           </div>
                       </div>
                       <div className="card-body px-0">
-                          <div className='d-flex justify-content-between'><div className='d-flex flex-column px-2'><h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.name}</h5><span className='CartPriceHome pt-1'>{currentData.price ? "Price: "+ currentData.price : <></>}</span><span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price && currentData.regular_price !== currentData.price  ? "Regular Price: " + currentData.regular_price :<></>}</span><div>{currentData.yoast_head_json.og_description.slice(0, 54)}</div></div> <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e,BtnIndex) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src)})}>{buttonText}</button></div></div>
+                          <div className='d-flex justify-content-between'>
+                            <div className='d-flex flex-column px-2'>
+                              <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.name}</h5>
+                              <span className='CartPriceHome pt-1 fw-bold'>{currentData.price ? "Price: "+ currentData.price : <></>}</span>
+                              <span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price && currentData.regular_price !== currentData.price  ? "Regular Price: " + currentData.regular_price :<></>}</span>
+                              {/* <div className='pt-2 fst-italic fw-light'>{currentData.short_description.slice(' ').slice(3,42)}...</div> */}
+                            </div>
+                            <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e,BtnIndex) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src)})}>{buttonText}</button></div></div>
+
                           <div className='position-absolute top-100 start-50 translate-middle'>
                             
                               {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                           </div>
+                          <div className='pt-2 px-2 fst-italic fw-light'>{currentData.short_description.slice(' ').slice(3,42)}...</div>
                       </div>
                   </div>
                     )
