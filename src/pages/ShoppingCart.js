@@ -8,196 +8,18 @@ import 'swiper/css/pagination';
 import '../styles/ShopingCart.css'
 // import TotalValus from '../components/TotalValus';
 import Delivery from '../components/Delivery';
+import SkeletonCard from '../components/SkeletonCard';
   // Import Axios
   import axios from 'axios';
 
 
-const biriyanilist = [{
-    qty:1,
-    price: 100,
-    img: "images/Chicken-65-Biriyani.webp",
-    title: "Chicken-65-Biriyani",
-    id: 1
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Chicken-Biriyani2.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 2
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Chicken-Fry-Biriyani1.webp",
-    title: "Chicken-Fry",
-    id: 3
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Kadai-Fry-Biriyani-1.webp",
-    title: "Kadai-Fry-Biriyani.",
-    id: 4
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Biriyani2.webp",
-    title: "Mutton-Biriyani",
-    id: 5
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Fry-1.webp",
-    title: "Mutton-Fry",
-    id: 6
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Fry-Biriyani.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 7
-},
-{
-    qty:1,
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 8
-}];
-
-const mutton_Dishes = [{
-    price: 100,
-    img: "muttonDish_img/Matton-Spleen-Fry-220.webp",
-    title: "Chicken-65-Biriyani",
-    id: 9
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Brain.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 10
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Chop.webp",
-    title: "Chicken-Fry-Biriyani1",
-    id: 11
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Fry-1 (1).webp",
-    title: "Kadai-Fry-Biriyani-1.",
-    id: 12
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Kola-2.webp",
-    title: "Mutton-Biriyani2",
-    id: 13
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Liver-2.webp",
-    title: "Mutton-Fry-1",
-    id: 14
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Nalli-Fry.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 15
-  },
-  {
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 16
-  }];
-  
-  const Chicken_Dishes = [{
-    price: 100,
-    img: "chicken_dish/Chicken-65.webp",
-    title: "Chicken-65-Biriyani",
-    id: 1
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Chicken-fry1.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 2
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Chicken-Lolypop1.webp",
-    title: "Chicken-Fry-Biriyani1",
-    id: 3
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Kaadai-fry5.webp",
-    title: "Kadai-Fry-Biriyani-1.",
-    id: 4
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Nattu-Kozhi-Fry.webp",
-    title: "Nattu-Kozhi-Fry",
-    id: 5
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Pallipalayam-Chicken-Fry-2.webp",
-    title: "Pallipalayam-Chicken-Fry",
-    id: 6
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Nalli-Fry.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 7
-  },
-  {
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 8
-  }];
-  
-  const egg_Dishes = [{
-    price: 100,
-    img: "egg_dishes/Egg-Omelette.webp",
-    title: "Egg_Omelette",
-    id: 17
-  },
-  {
-    price: 100,
-    img: "egg_dishes/Egg-Podimass.webp",
-    title: "Egg-Podimass",
-    id: 18
-  }];
-  
-  const fish_Dishes = [{
-    price: 100,
-    img: "fish_dishes/Prawn-Fry-2.webp",
-    title: "Prawn-Fry",
-    id: 19
-  },
-  {
-    price: 100,
-    img: "fish_dishes/Vanjaram-fish-fry-tasty.webp",
-    title: "Vanjaram-fish-fry-tasty",
-    id: 20
-  }];
 
 
-function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendToMb,filteredData,itemsSearchValue}) {
+
+function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendToMb,filteredData,itemsSearchValue,buttonText}) {
 
     const [cart, setCart] = useState(Cartdetails);
-    const [cartList, setCartList] = useState(mutton_Dishes);
+    // const [cartList, setCartList] = useState(mutton_Dishes);
     // const [allItems, setAllItems] = useState();
     const [mobileCartDeliveryDis, setMobileCartDeliveryDis] = useState(false);
     const [mbViewDirect, setMbViewDirect] = useState(false);
@@ -211,24 +33,37 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
     //--------------------------------- Axois Api key  -----------------------
     const [apiData, setApiData] = useState([]);
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
 
+    // ------------------------ changing categeries values ----------------
+    
+    const [changeApiCount,SetChangeApiCount] = useState(5);
 
     useEffect(() => {
          const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
          setCart(storedCart);
-         inputvalueGetFun();  
+         inputvalueGetFun(); 
         //  ------------------------------Api get Method---------------------
           fetchData();
-     }, [Cartdetails,itemsSearchValue]);
+     }, [Cartdetails,itemsSearchValue,changeApiCount]);
+     
 
+     const handleCategries = (event) => {
+        setIsLoadingPage(true);
+        SetChangeApiCount(event);
+     }
 
   //  ---------------------------------- Fetch Api Axois Methods -------------------------
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://zukachocolates.com/wp-json/wc/v3/products?page=5&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a');
+
+      const response = await axios.get(`https://srivenkateshwarasweets.in/wp-json/wc/v3/products?page=${changeApiCount}&consumer_key=ck_b31cbf4a99a70c0c02f682eeae469b7cbfc774c0&consumer_secret=cs_0d51924fb90c2a413674ca4bd37d54955178f2f9`);
       setApiData(response.data);
+      setIsLoadingPage(false);
+
     } catch (error) {
+
       console.error('Error fetching data:', error);
       // Handle errors here
     }
@@ -239,18 +74,18 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
      // ------------------------- Modal view and hide automatically -------------------
      const inputvalueGetFun = () =>{
         setFilteredDatas(filteredData);
-        console.log(filteredData,"check value is there");
+        // console.log(filteredData,"check value is there");
      }
 
     //  ----------------------modal close automatically -----------------------
-    const modalCloseAutomatically = () => {
-      if(cart.length === 0){
-        alert("hai your cart is zero");
-      }
-    }
+    // const modalCloseAutomatically = () => {
+    //   if(cart.length === 0){
+    //     alert("hai your cart is zero");
+    //   }
+    // }
      
 
-    console.log(apiData.map(e => e),"asdjbhgdgvsdiomoldsbhgu");
+    // console.log(apiData.map(e => e),"asdjbhgdgvsdiomoldsbhgu");
     
 
     return (
@@ -276,24 +111,26 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
             {/*-------------------------- Button scroll mobile view  -----------------------------*/}
             <div className="slider-container position-sticky top-0 d-md-none">
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(e)}>Celebration Cakes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Truffle Cakes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(e)}>Single Pastries</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Gift Boxes</button></div>
-               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Bars</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(2)}>Celebration Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(3)}>Chocolate Truffle Cakes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(10)}>Single Pastries</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(7)}>Chocolate Gift Boxes</button></div>
+               <div className="slider-item "><button type='button' className='btn w-100 btn_menu border px-1 px-sm-4 ' onClick={(e) => handleCategries(6)}>Chocolate Bars</button></div>
                {/* Add more slider items as needed */}
             </div>
 
+            {/*-------------------------- desktop view  -----------------------------*/}
             
             <div className=' d-none d-lg-block py-2' >
               <div className=' d-flex flex-wrap gap-4' >
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(e)}>Celebration Cakes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Truffle Cakes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(e)}>Single Pastries</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Gift Boxes</button>
-                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(e)}>Chocolate Bars</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(2)}>Celebration Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(3)}>Chocolate Truffle Cakes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(10)}>Single Pastries</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(7)}>Chocolate Gift Boxes</button>
+                <button type='button' className='btn btn_menu border px-2 px-sm-4 ' onClick={(e) => handleCategries(6)}>Chocolate Bars</button>
               </div>
             </div>
+            
           </div>
 
           {/* -----------------------button end----------------------- */}
@@ -301,7 +138,9 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
           <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5'>
             {/*------------------- serach set--------------------------  */}
 
-            {itemsSearchValue.length > 0 ? filterDatas.length === 0 ? <p className='fs-6 fw-bold mt-5'>Give the correct name of the items</p> : filterDatas.map((currentData) => (
+            {itemsSearchValue.length > 0 ? filterDatas.length === 0 ? <p className='fs-6 fw-bold mt-5'>Give the correct name of the items</p>
+             : 
+            filterDatas.map((currentData) => (
                     <div className="card col-1 my-lg-1 cardOuterWrapper" style={{ width: 17 + "rem" }} key={currentData.id}>
                         <div className='position-relative cart_imgae'>
                             <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> {/* onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
@@ -317,20 +156,28 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
                     </div>
                 )) 
                 : 
-                apiData.map((currentData) => (
-                  <div className="card col-1 my-lg-1 cardOuterWrapper" style={{ width: 17 + "rem" }} key={currentData.id}>
-                      <div className='position-relative ImageWrapper'>
-                          {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
-                          <img src={currentData.images.map(e => e.src)} className="card-img-top p-2 cart_imgae"  alt="no image found" />
+
+                isLoadingPage ? (
+                  <SkeletonCard />
+                ) : (
+                 
+                  apiData.map((currentData,index) => (
+                    <div className="card col-1 my-lg-1 cardOuterWrapper" style={{ width: 17 + "rem" }} key={currentData.id}>
+                      <div className='ImageWrapper'>
+                          <div className='ImageInner'>
+                            {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
+                            <img src={currentData.images.map(e => e.src)} className="card-img-top cart_imgae"  alt="no image found" />  
+                          </div>
                       </div>
                       <div className="card-body px-0">
-                          <div className='d-flex justify-content-between'><div className='d-flex flex-column px-2'><h5 className="Shoping_cartTitle card-title p-0 m-0">{currentData.name}</h5><span className='CartPriceHome pt-1'>{currentData.price ? "Price: "+ currentData.price : <></>}</span><span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price ? "Regular Price: " + currentData.regular_price :<></>}</span></div> <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src), event: e.target.id })}>Add</button></div></div>
-                          <div className='d-flex  justify-content-between'></div>
+                          <div className='d-flex justify-content-between'><div className='d-flex flex-column px-2'><h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.name}</h5><span className='CartPriceHome pt-1'>{currentData.price ? "Price: "+ currentData.price : <></>}</span><span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price && currentData.regular_price !== currentData.price  ? "Regular Price: " + currentData.regular_price :<></>}</span><div>{currentData.yoast_head_json.og_description.slice(0, 54)}</div></div> <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e,BtnIndex) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src)})}>{buttonText}</button></div></div>
                           <div className='position-absolute top-100 start-50 translate-middle'>
+                            
                               {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                           </div>
                       </div>
                   </div>
+                    )
               )) } 
             </div>
 
@@ -436,7 +283,7 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
             <div className='container footerCartrMb rounded position-fixed d-lg-none'>
                   <div className='row text-white p-2 footerCartrMb_TotalAmount'>
                     <div className='col-5 d-flex  flex-column g-1 '>
-                      <div className='fw-bold items'><span>{cart.length} {cart.length > 1 ? "Items" : "Item"} </span><i data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="bi bi-chevron-up upArrowModalBtn front_corsur text-white"></i></div>
+                      <div className='fw-bold items'><span className='items_Animation'>{cart.length} {cart.length > 1 ? "Items" : "Item"} </span><i data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="bi bi-chevron-up upArrowModalBtn front_corsur text-white"></i></div>
                       <div className='fw-bold'>Total: {formattedAmountSendToMb}</div>
                     </div>
                     {/* <div className='col-3 ps-1 text-end position-relative'>View<span className="position-absolute top-0 start-100 translate-middle badge rounded bg-white text-dark badge_footerMb">{cart.length}</span></div> */}

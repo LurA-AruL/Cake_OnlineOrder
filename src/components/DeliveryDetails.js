@@ -8,7 +8,7 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount}) {
 
         const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
         setOrderSend(storedCart);
-        console.log("trying");
+        // console.log("trying");
     }, [CartdetailstoDelivery]);
 
   const [formData, setFormData] = useState({
@@ -77,7 +77,7 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount}) {
 
     if (validateForm()) {
       // Submit the form data or perform further actions
-      console.log("Form is valid and can be submitted.");
+      // console.log("Form is valid and can be submitted.");
       const Nil = '-Nil';
       const total = orderSend.map(e => e.item_qty *  e.item_price).reduce((e,ee) => e+ee );
       const orderDetails = orderSend.map(event => `${event.item_qty} x ${event.item_name} = ${event.item_qty * event.item_price}`);
@@ -106,11 +106,11 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
 
       const sendData = encodeURIComponent(message);
 
-      console.log(document.forms[0][0].value = " ");
-      console.log(document.forms[0][1].value = " ");
-      console.log(document.forms[0][2].value = " ");
-      console.log(document.forms[0][3].value = " ");
-      console.log(document.forms[0][4].value = " ");
+      // console.log(document.forms[0][0].value = " ");
+      // console.log(document.forms[0][1].value = " ");
+      // console.log(document.forms[0][2].value = " ");
+      // console.log(document.forms[0][3].value = " ");
+      // console.log(document.forms[0][4].value = " ");
 
             window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
     } else {
@@ -129,7 +129,7 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
 
   return (
     <div className="container position-realtive">
-      <form onSubmit={handleSubmit} className="pt-3" >
+      <form onSubmit={handleSubmit} className="pt-3 m-0" >
         
         <div className="d-flex flex-column gap-3">
         <div className="form-group">
@@ -187,10 +187,10 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
         </div>
 
         <div className="form-group mt-4">
-          <label htmlFor="comments" className="font_Headers">Comments:</label>
+          <label htmlFor="comments" className="font_Headers">Notes:</label>
           <textarea
             className="form-control border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
-            placeholder="Leave a comment here"
+            placeholder="Enter your notes here..."
             id="comments"
             name="comments"
             rows="4"
@@ -201,12 +201,12 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
         </div>
 
         <div className="form-group pt-3 whatsappBtnWrapper  sticky-lg-bottom d-none d-lg-block">
-          <button type="submit" className="btn border w-100 bg-warning whatsappBtn"><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button>
+          <button type="submit" className="btn border w-100 whatsappBtn"><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button>
         </div>
 
         <div className="form-group fixed-bottom d-sm-none d-flex border-top p-2">
                     <div className="w-25 p-2 fw-bold d-flex align-items-center">Total <span className=" ps-2 fw-normal">{formattedAmount}</span></div>
-                    <div className="w-75 p-2 text-end"><button type="submit" className="btn border bg-warning whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
+                    <div className="w-75 p-2 text-end"><button type="submit" className="btn border whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
                 </div>
       </form>
     </div>

@@ -1,9 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;1,400&family=Rubik+Glitch&display=swap');
-html,body{
-  font-family: 'Poppins', sans-serif;
-  font-family: 'Rubik Glitch', cursive;
-}
+
 :root {
   --main-bg-color: rgb(82, 37, 6)  ; /* Define a global background color variable */
   --text-color: saddlebrown;
@@ -88,7 +85,7 @@ input:focus
 }
 .carousel-item{
   width: 100%;
-  height: 200px;
+  height: 300px;
   background-color: rgb(255, 255, 255) !important;
 }
 
@@ -217,7 +214,7 @@ input:focus
 /* SideCardTitle */
 
 .asideCartHeader{
-  font-size: 6pt;
+  font-size: 10pt;
   font-weight: 900;
 }
 
@@ -276,7 +273,33 @@ input:focus
 }
 
 
+/* --------------------whatsApp order buttons-------------- */
+.whatsappBtns{
+  color: white !important;
+  background-color: var(--main-bg-color) !important;
+}
+.whatsappBtns:hover{
+  color: white !important;
+  background-color:rgb(231, 197, 10) !important;
+}
 /* button categories */
+
+
+
+/* trying css animation carts effects */
+
+.clickable-element {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+.clickable-element.active {
+  background-color: #2980b9; /* Change the background color on click */
+}
 
 @media only screen  and (max-width:992px) and (min-width:0) {
 
@@ -304,7 +327,7 @@ input:focus
   .NavBarFooter{
     position: fixed;
     width: 100% !important;
-    min-height: 50px !important;
+    min-height: 60px !important;
     z-index: 4;
     top: 93%;
   }
@@ -318,8 +341,8 @@ input:focus
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 0px;
     background-color:rgba(255, 255, 255, 0.892) !important;
-    padding: 5px 0px;
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
   }

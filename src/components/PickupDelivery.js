@@ -10,7 +10,7 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount}) {
 
         const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
         setOrderSend(storedCart);
-        console.log("trying");
+        // console.log("trying");
         
     }, [CartdetailstoDelivery]);
 
@@ -68,9 +68,9 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount}) {
 
         if (validateForm()) {
 
-            console.log(specialComments,'condition');
+            // console.log(specialComments,'condition');
             // Submit the form data or perform further actions
-            console.log("Form is valid and can be submitted.");
+            // console.log("Form is valid and can be submitted.");
             const Nil = '-Nil';
             const total = orderSend.map(e => e.item_qty *  e.item_price).reduce((e,ee) => e+ee );
             const orderDetails = orderSend.map(event => `${event.item_qty} x ${event.item_name} = ${event.item_qty * event.item_price}`);
@@ -124,8 +124,8 @@ ${deliveryDetails}
     };
 
     return (
-        <div className="container Delivery_OuterWrapper">
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative">
+        <div className="container Delivery_OuterWrapper  ">
+            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
                 <div className="form-group">
                     <label htmlFor="name" className="font_Headers">Name:</label>
                     <input
@@ -154,10 +154,10 @@ ${deliveryDetails}
                 </div>
 
                 <div className="form-group mt-4">
-                    <label htmlFor="comments" className="font_Headers">Comments:</label>
+                    <label htmlFor="comments" className="font_Headers">Notes:</label>
                     <textarea
                         className="form-control border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
-                        placeholder="Leave a comment here"
+                        placeholder="Enter your notes here..."
                         id="comments"
                         name="comments"
                         rows="4"
@@ -169,11 +169,11 @@ ${deliveryDetails}
 
 
                 <div className="form-group sticky-lg-bottom d-none d-lg-block">
-                    <button type="submit" className="btn border w-100 bg-warning whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button>
+                    <button type="submit" className="btn border w-100  whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button>
                 </div>
                 <div className="form-group fixed-bottom d-sm-none d-flex border-top p-2">
                     <div className="w-25 p-2 fw-bold d-flex align-items-center">Total <span className=" ps-2 fw-normal">{formattedAmount}</span></div>
-                    <div className="w-75 text-end p-2"><button type="submit" className="btn border bg-warning whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
+                    <div className="w-75 text-end p-2"><button type="submit" className="btn border whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
                 </div>
             </form>
         </div>

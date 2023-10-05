@@ -4,246 +4,9 @@ import Delivery from '../components/Delivery';
 import ShoppingCart from './ShoppingCart';
 import axios from 'axios';
 
-const biriyanilist = [{
-  qty:1,
-  price: 100,
-  img: "images/Chicken-65-Biriyani.webp",
-  title: "Chicken-65-Biriyani",
-  id: 1
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Chicken-Biriyani2.webp",
-  title: "Chicken-Fry-Biriyani",
-  id: 2
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Chicken-Fry-Biriyani1.webp",
-  title: "Chicken-Fry",
-  id: 3
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Kadai-Fry-Biriyani-1.webp",
-  title: "Kadai-Fry-Biriyani.",
-  id: 4
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Mutton-Biriyani2.webp",
-  title: "Mutton-Biriyani",
-  id: 5
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Mutton-Fry-1.webp",
-  title: "Mutton-Fry",
-  id: 6
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Mutton-Fry-Biriyani.webp",
-  title: "Mutton-Fry-Biriyani",
-  id: 7
-},
-{
-  qty:1,
-  price: 100,
-  img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-  title: "Natu-Kozhi-Fry-Biriyani",
-  id: 8
-}];
 
 
-const menuList = [
-  {
-    biriyanilist : [{
-    qty:1,
-    price: 100,
-    img: "images/Chicken-65-Biriyani.webp",
-    title: "Chicken-65-Biriyani",
-    id: 1
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Chicken-Biriyani2.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 2
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Chicken-Fry-Biriyani1.webp",
-    title: "Chicken-Fry",
-    id: 3
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Kadai-Fry-Biriyani-1.webp",
-    title: "Kadai-Fry-Biriyani.",
-    id: 4
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Biriyani2.webp",
-    title: "Mutton-Biriyani",
-    id: 5
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Fry-1.webp",
-    title: "Mutton-Fry",
-    id: 6
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Mutton-Fry-Biriyani.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 7
-  },
-  {
-    qty:1,
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 8
-  }]},
-   {
-    mutton_Dishes :[{
-    price: 100,
-    img: "muttonDish_img/Matton-Spleen-Fry-220.webp",
-    title: "Chicken-65-Biriyani",
-    id: 9
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Brain.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 10
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Chop.webp",
-    title: "Chicken-Fry-Biriyani1",
-    id: 11
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Fry-1 (1).webp",
-    title: "Kadai-Fry-Biriyani-1.",
-    id: 12
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Kola-2.webp",
-    title: "Mutton-Biriyani2",
-    id: 13
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Liver-2.webp",
-    title: "Mutton-Fry-1",
-    id: 14
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Nalli-Fry.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 15
-  },
-  {
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 16
-  }]},
-   {Chicken_Dishes : [{
-    price: 100,
-    img: "chicken_dish/Chicken-65.webp",
-    title: "Chicken-65-Biriyani",
-    id: 1
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Chicken-fry1.webp",
-    title: "Chicken-Fry-Biriyani",
-    id: 2
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Chicken-Lolypop1.webp",
-    title: "Chicken-Fry-Biriyani1",
-    id: 3
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Kaadai-fry5.webp",
-    title: "Kadai-Fry-Biriyani-1.",
-    id: 4
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Nattu-Kozhi-Fry.webp",
-    title: "Nattu-Kozhi-Fry",
-    id: 5
-  },
-  {
-    price: 100,
-    img: "chicken_dish/Pallipalayam-Chicken-Fry-2.webp",
-    title: "Pallipalayam-Chicken-Fry",
-    id: 6
-  },
-  {
-    price: 100,
-    img: "muttonDish_img/Mutton-Nalli-Fry.webp",
-    title: "Mutton-Fry-Biriyani",
-    id: 7
-  },
-  {
-    price: 100,
-    img: "images/Natu-Kozhi-Fry-Biriyani.webp",
-    title: "Natu-Kozhi-Fry-Biriyani",
-    id: 8
-  }]},
-   {egg_Dishes : [{
-    price: 100,
-    img: "egg_dishes/Egg-Omelette.webp",
-    title: "Egg_Omelette",
-    id: 17
-  },
-  {
-    price: 100,
-    img: "egg_dishes/Egg-Podimass.webp",
-    title: "Egg-Podimass",
-    id: 18
-  }]},
-   {fish_Dishes : [{
-    price: 100,
-    img: "fish_dishes/Prawn-Fry-2.webp",
-    title: "Prawn-Fry",
-    id: 19
-  },
-  {
-    price: 100,
-    img: "fish_dishes/Vanjaram-fish-fry-tasty.webp",
-    title: "Vanjaram-fish-fry-tasty",
-    id: 20
-  }]}
-]
-
-export default function Home(props) {
+export default function Home({inputRef,cartItems}) {
 
   // const api = "http://localhost:5000/comments";
 
@@ -257,6 +20,12 @@ export default function Home(props) {
 
   //--------------- search button refference-----------------
   // const inputRef = useRef(null);
+
+   // change button text
+   const [buttonText, setButtonText] = useState('Add');
+
+  // -------------------- add to carts animation in css -----------------------
+    const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     // Load the cart from localStorage when the component mounts
@@ -274,41 +43,42 @@ export default function Home(props) {
         
         setApiData(response.data);
       } catch (error) {
+
         console.error('Error fetching data:', error);
         // Handle errors here
       }
     };
   
-    // ----------------------------------- Fetch Api Axois Methods ---------------------------
-
-
-  // ------------------search refference------------
-  // const focusInput = () => {
-  //   // Access the current property to get the DOM element
-  //   inputRef.current.focus();
-  // };
+    // -------------------- add to carts animation in css -----------------------
+    const handleClick = () => {
+      // Handle the click event here
+      setIsClicked(true);
+  
+      // Perform other actions if needed
+      alert('Button clicked!');
+    };
   
   // ------------------ filter carts items -----------------------
   const handleSearch = (event) => {
+    
     const inputvalueGet = event;
     setItemsSearch(inputvalueGet); 
         
-
-    const filtered = biriyanilist.filter(item =>
-      item.title.toLowerCase().includes(inputvalueGet.toLowerCase())
-    );
-    
-    console.log(itemsSearch,'input value') 
+    const filtered = []; 
+    // const filtered = biriyanilist.filter(item =>
+    //   item.title.toLowerCase().includes(inputvalueGet.toLowerCase())
+    // );
 
     setFilteredData(filtered);
-    console.log(filtered,"filter data from parent");
 
   }; 
+
+  //-------------------------------- increase cart values 
 
   //  ------------------------------ Adding Cart Total Amount and values --------------------------------------
 
   function sumTotal(arrNumber) {
-
+    cartItems(cart.length)
     return arrNumber.reduce((acc, currentValue) => acc + currentValue, 0);
 
   }
@@ -330,6 +100,8 @@ const updateCart = (updatedCart) => {
   setCart(updatedCart);
   // Update the cart in localStorage
   localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+  // cart value increase
 };
 
   // ---------------------------------- Aside and Main Carts items Adding function here --------------------------------
@@ -342,11 +114,14 @@ const updateCart = (updatedCart) => {
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].item_qty += 1;
       updateCart(updatedCart);
+
     } else {
       // Item is not in the cart, add it
       const updatedCart = [...cart, { ...item, item_qty: 1 }];
       updateCart(updatedCart);
     }
+    // handleClick();
+
   };
 
   // ---------------------------------- Aside Carts items Removing function here --------------------------------   
@@ -368,6 +143,8 @@ const updateCart = (updatedCart) => {
     }
   };
 
+ 
+
   
   return (
     <>
@@ -375,12 +152,12 @@ const updateCart = (updatedCart) => {
         <div className='px-md-4 py-3 col-12 col-lg-9 position-relative'>
           {/*------------------------------------- The Header components here---------------------  */}
           <header className='d-flex flex-row align-items-center justify-content-center'>
-            <div className='logo col-3 col-sm-2  text-end'>
-              <img src="zukaImage/Zuka-Logo.png" className='w-75 front_corsur' alt='no image found' />
+            <div className='logo col-3 col-sm-2  text-center'>
+              <img src="zukaImage/Zuka-Logo.png" className='w-75 rounded-2 front_corsur ' alt='no image found' />
             </div>
             <div className='col-9 col-md-10 px-lg-2 pe-3' >
               {/* <p className=' mb-1 text-center text-lg-start font-monospace text-muted promotionText'><i class="bi bi-emoji-smile-upside-down text-warning"></i> Freshly Cooked, Always Delicious!</p> */}
-              <input  ref={props.inputRef} className="form-control p-lg-2 rounded-pill" name={itemsSearch} onChange={((e) => handleSearch(e.target.value))} type="search" placeholder="What would you like to eat?" id="example-search-input" />
+              <input  ref={inputRef} className="form-control p-lg-2 rounded-pill" name={itemsSearch} onChange={((e) => handleSearch(e.target.value))} type="search" placeholder="What would you like to eat?" id="example-search-input" />
             </div>
             {/* <div className='col-1 col-md-2'>
               <i className="bi bi-filter front_corsur filler_icon" ></i>
@@ -390,18 +167,17 @@ const updateCart = (updatedCart) => {
           <div id="carouselExampleIndicators" className="carousel slide p-3 " data-bs-ride="carousel">
             <div className="carousel-indicators">
               <div>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" className="active" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-current="true" aria-label="Slide 1"></button>
               </div>
             </div>
             <div className="carousel-inner">
+            <div className="carousel-item active">
+                <img src="zukaImage/banner1.jpeg" className="panner_image" alt="no image found" />
+              </div>
               <div className="carousel-item ">
-                <img src="ZukaImage/banner1.jpeg" className="panner_image" alt="no image found" />
+                <img src="zukaImage/banner2.jpeg" className="panner_image" alt="no image found" />
               </div>
-              <div className="carousel-item active">
-                <img src="ZukaImage/banner2.jpeg" className="panner_image" alt="no image found" />
-              </div>
-             
             </div>
           </div>
 
@@ -410,7 +186,7 @@ const updateCart = (updatedCart) => {
 
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
-            <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch}/>
+            <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/>
           </div>
 
         {/*------------------------------------- The Main Session to be end.... ---------------------  */}
@@ -494,9 +270,9 @@ const updateCart = (updatedCart) => {
                   
               <div className='position-fixed bottom-0 asideBg_color_footer'>
                             <div className='d-flex  row asideBg_color_footer_inner'>
-                              <div className='col-12 py-2'><p className="w-100 fw-bold ps-2 d-flex justify-content-between"><span>Total Items</span><span className='fontGold pe-2'>{cart.length}</span></p></div>
-                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className='fontGold pe-2'>{formattedAmount}</span></p></div>
-                              <div className='col-12 my-2 text-center'><button type="submit" className="btn w-100 border whatsappBtn " data-bs-toggle="modal" data-bs-target="#HomeOrderOnWhatsapp"><i className="bi bi-whatsapp pe-2 text-success"></i>Order on Whatsapp</button></div>  
+                              <div className='col-12 py-2'><p className="w-100 fw-bold ps-2 d-flex justify-content-between " ><span>Total Items</span><span className=' pe-2'>{cart.length}</span></p></div>
+                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className=' pe-2'>{formattedAmount}</span></p></div>
+                              <div className='col-12 my-2 text-center'><button type="submit" className="btn w-100 border whatsappBtns " data-bs-toggle="modal" data-bs-target="#HomeOrderOnWhatsapp"><i className="bi bi-whatsapp pe-2 text-success"></i>Order on Whatsapp</button></div>  
                               </div>
               </div>
                 : <></> }

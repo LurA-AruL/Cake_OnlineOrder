@@ -15,7 +15,7 @@ const [activeIcon, setActiveIcon] = useState(''); // Initialize the activeIcon s
 
 useState(() => {
 
-},[cartCounting])
+},[])
 
 // ----------------search fun----------------
 
@@ -32,19 +32,21 @@ const childInputRef = useRef(null);
   };
 
   // ---------- end ----------------------
+
+  // ---------------------callback function for carts counting--------------------
  
 const cartItems = (cardItemValue) => {
 
      setcartCounting(cardItemValue);
-     console.log(cardItemValue,"the run app.js")
+    //  console.log(cardItemValue,"the run app.js")
 }
 
   const handleIconClickOne = (iconName) => {
     setActiveIcon(iconName); // Set the active icon based on the clicked icon name
-
-    console.log(iconName,"s;mdklmd")
   };
 
+
+  
   return (
     <>
       <div className='d-flex mainBody position-relative'>
@@ -103,8 +105,8 @@ const cartItems = (cardItemValue) => {
 
         </div>
       <Routes>
-        <Route path='/' element={<Home  cartreciveFun={cartItems} inputRef={childInputRef} />} />
-        <Route path='/Cart' element={<Cart />} />
+        <Route path='/' element={<Home   inputRef={childInputRef}  cartItems={cartItems}/>} />
+        <Route path='/Cart' element={<Cart cartreciveFun={cartItems} />} />
         <Route path='/WishList' element={<WishList />} />
         <Route path='/portfolio' element={<Portfolio />} />
       </Routes>

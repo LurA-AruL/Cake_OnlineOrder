@@ -1,0 +1,47 @@
+.cartsWrapper{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(243, 243, 243, 0.044);
+}
+.cartFooterWrapper{
+    height: 11vh;
+    color: white;
+    background-color: var(--main-bg-color);
+}
+.cartAreaItems{
+
+    height: 89vh;
+}
+.cart_CUSTOMIZE_Text{
+    font-size: 11pt;
+    opacity: 0.8;   
+}
+.CartDeliveryOptionText{
+    color: var(--main-bg-color);
+    font-weight: 620;
+    opacity: 1;
+}
+
+
+@media only screen  and (max-width:992px) and (min-width:0) {
+.cartAreaItemsOuter{
+    width: 100% !important;
+}
+.cartFooterWrapper{
+    height: 0vh;
+    color: white;
+    background-color: var(--main-bg-color);
+}
+.cartAreaItems{
+    background-color: white;
+    min-height: 100vh;
+}
+.cartFooterWrapperMoblie{
+    background-color: var(--main-bg-color);
+    bottom: 10% !important;
+}
+
+.totalText{
+    font-size: 8pt;
+}
+}
