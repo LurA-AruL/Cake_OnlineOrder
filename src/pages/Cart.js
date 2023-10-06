@@ -31,10 +31,12 @@ export default function Cart({cartreciveFun}) {
 
   //  ------------ To formatted into  currency Simbols ------------------------------
 
-  const formattedAmount = result.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-  });
+  const formattedAmount = Math.round(result);
+
+  // const formattedAmount = result.toLocaleString('en-IN', {
+  //   style: 'currency',
+  //   currency: 'INR',
+  // });
 
 
   const updateCart = (cartValue) => {
@@ -168,7 +170,7 @@ export default function Cart({cartreciveFun}) {
               <div className='cartFooterWrapper rounded d-none d-lg-block' >
                             <div className=' row w-100 '>
                               <div className='col-12 py-2'><p className="w-100 fw-bold ps-2 d-flex justify-content-between " ><span>Total Items</span><span className='text-white pe-2'>{getData.length}</span></p></div>
-                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className='text-white pe-2'>{formattedAmount}</span></p></div>
+                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className='text-white pe-2'><i className="bi bi-currency-rupee "></i>{formattedAmount}</span></p></div>
                               </div>        
               </div>
 
@@ -177,7 +179,7 @@ export default function Cart({cartreciveFun}) {
                     <div className='col-5'>
                       {/* <div className='fw-bold items'><span className='items_Animation'>{getData.length} {getData.length > 1 ? "Items" : "Item"} </span><i data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="bi bi-chevron-up upArrowModalBtn front_corsur text-white"></i></div> */}
                       <div className='fw-bold items'><span className='items_Animation'>{getData.length} {getData.length > 1 ? "Items" : "Item"} </span></div>
-                      <div className='fw-bold totalText'>Total: {formattedAmount}</div>
+                      <div className='fw-bold totalText'>Total:{formattedAmount}</div>
                     </div>
                     <div className='col-7 text-end'><button type="button"  className="btn p-1 footerCartrMb_OrdeBtn text-success" data-bs-toggle="modal" data-bs-target="#CartViewDirectDelivery"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button></div>
                   </div>

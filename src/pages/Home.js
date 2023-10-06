@@ -86,12 +86,15 @@ export default function Home({inputRef,cartItems}) {
   const TotalValus = cart.map(events => events.item_price * events.item_qty);
   const result = sumTotal(TotalValus);
 
+  // Round off the result to two decimal places (adjust as needed)
+  const formattedAmount = Math.round(result);
+
   //  ------------ To formatted into  currency Simbols ------------------------------
 
-  const formattedAmount = result.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-  });
+  // const formattedAmount = roundedResult.toLocaleString('en-IN', {
+  //   style: 'currency',
+  //   currency: 'INR',
+  // });
 
 // ---------------------------------- Aside Carts items Updating function here --------------------------------
 
@@ -227,7 +230,7 @@ const updateCart = (updatedCart) => {
                   cart.map((e, index) => (
                     <div className="card border-0 mb-1" style={{ maxWidth: 300 + "px" }} key={index}>
                       <div className="row px-3">
-                        <div className="col-md-4 rounded d-flex align-items-center">
+                        <div className="col-md-4 rounded py-2">
                           <img src={e.item_image} className="img-fluid rounded" alt="no image found" />
                         </div>
                         <div className="col-md-8">
@@ -237,7 +240,7 @@ const updateCart = (updatedCart) => {
                               <div className="card-price SideCardprice d-flex"><i className="bi bi-currency-rupee "></i><span>
                                 {cart.map((item, index) => (
                                   <div key={index} className=''>
-                                    {item.item_id == e.item_id ? + item.item_qty * item.item_price : <></>}
+                                    {item.item_id == e.item_id ?  (item.item_qty * item.item_price).toFixed(2) : <></>}
                                   </div>
                                 ))}
                               </span>
@@ -271,7 +274,7 @@ const updateCart = (updatedCart) => {
               <div className='position-fixed bottom-0 asideBg_color_footer'>
                             <div className='d-flex  row asideBg_color_footer_inner'>
                               <div className='col-12 py-2'><p className="w-100 fw-bold ps-2 d-flex justify-content-between " ><span>Total Items</span><span className=' pe-2'>{cart.length}</span></p></div>
-                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className=' pe-2'>{formattedAmount}</span></p></div>
+                              <div className='col-12 py-2 '><p className="w-100 pt-2 fw-bold ps-2 d-flex justify-content-between"><span>Total Amount</span><span className=' pe-2'><i className="bi bi-currency-rupee "></i>{formattedAmount}</span></p></div>
                               <div className='col-12 my-2 text-center'><button type="submit" className="btn w-100 border whatsappBtns " data-bs-toggle="modal" data-bs-target="#HomeOrderOnWhatsapp"><i className="bi bi-whatsapp pe-2 text-success"></i>Order on Whatsapp</button></div>  
                               </div>
               </div>
