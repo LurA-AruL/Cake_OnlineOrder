@@ -3,8 +3,7 @@ import Delivery from '../components/Delivery';
 // import Cards from './Cards';
 import ShoppingCart from './ShoppingCart';
 import axios from 'axios';
-
-
+import TestingPagelodaing from '../components/TestingPagelodaing'
 
 export default function Home({inputRef,cartItems}) {
 
@@ -189,7 +188,9 @@ const updateCart = (updatedCart) => {
 
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
-            <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/>
+            
+            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} />
+            {/* <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/> */}
           </div>
 
         {/*------------------------------------- The Main Session to be end.... ---------------------  */}

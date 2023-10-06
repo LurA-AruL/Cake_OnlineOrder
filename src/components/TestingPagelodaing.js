@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 // import 'swiper/css';
@@ -16,7 +17,7 @@ import SkeletonCard from '../components/SkeletonCard';
 
 
 
-function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendToMb,filteredData,itemsSearchValue,buttonText}) {
+function TestingPagelodaing({Cartdetails,removeFromCart,addToCart,formattedAmountSendToMb,filteredData,itemsSearchValue,buttonText}) {
 
     const [cart, setCart] = useState(Cartdetails);
     // const [cartList, setCartList] = useState(mutton_Dishes);
@@ -40,20 +41,78 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
       // const [changeApiCount,SetChangeApiCount] = useState(5);
 
     // -------------------------- on scrolling values ------------------------------ 
+    
+    // const [loadedItems, setLoadedItems] = useState(0);
+    const [page, setPage] = useState(1);
+  const [per_page, setPerPage] = useState(8);
+    const [isLoading, setIsLoading] = useState(false);
+  
+    const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`; // Replace with your actual API endpoint
+  
+    // Function to fetch more API values
+    const fetchMoreValues = async () => {
+        setIsLoading(true);
 
+        try {
+          // Simulated fetch for demonstration purposes
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+    
+          // Update state with the new values
+          setApiData(prevValues => [...prevValues, ...data]);
+          setPage(prevPage => prevPage + 1);
+        } catch (error) {
+          console.error('Error fetching API values:', error);
+        } finally {
+          setIsLoading(false);
+        }
+    };
+
+     // Load initial values
+  useEffect(() => {
+    fetchMoreValues();
+  }, []); // Empty dependency array ensures that it only runs once on mount
+
+  // Event listener for scrolling
+  const handleScroll = () => {
+    if (!isLoading) {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Load more values when the user is near the bottom
+      if (scrollY + windowHeight >= documentHeight - 100) {
+        fetchMoreValues();
+      }
+    }
+  };
+
+
+
+    // -----------------------------------------------
     useEffect(() => {
          const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
          setCart(storedCart);
          inputvalueGetFun(); 
         //  ------------------------------Api get Method---------------------
-          fetchData();
+        //   fetchData();
         // -------------- categories api functions ----------------- 
         fetchListCategories();
 
       //---------------------------------------------------------------------------------------
-      
+      window.addEventListener('scroll', handleScroll);
 
-     }, [Cartdetails,itemsSearchValue]);
+      // Remove the event listener when the component unmounts
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+
+     }, [Cartdetails,itemsSearchValue,isLoading]);
+
+
+
+     //----------------------------------------------------------
+     
      
 
      const handleCategries = (event) => {
@@ -79,12 +138,12 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
       console.error('Error fetching data:', error);
       // Handle errors here
-    }
+    } 
   };
   // -----------------------------------Fetch api from categories -----------------------
   const fetchCategories = async (event) => {
     try {  
-      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?category=${event}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=8`);
+      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?category=${event}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
       setApiData(response.data);
 
       console.log(response.data,'checking api');
@@ -100,20 +159,20 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
   //  ---------------------------------- Fetch Api Axois Methods -------------------------
 
-  const fetchData = async () => {
-    try {
+//   const fetchData = async () => {
+//     try {
       
-      const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=8`);
-      setApiData(response.data);
-      console.log(response.data,'cat');
-      setIsLoadingPage(false);
+//       const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
+//       setApiData(response.data);
+//       console.log(response.data,'cat');
+//       setIsLoadingPage(false);
 
-    } catch (error) {
+//     } catch (error) {
 
-      console.error('Error fetching data:', error);
-      // Handle errors here
-    }
-  };
+//       console.error('Error fetching data:', error);
+//       // Handle errors here
+//     }
+//   };
 
   // ----------------------------------- Fetch Api Axois Methods ---------------------------
 
@@ -170,7 +229,8 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
 
           {/* -----------------------button end----------------------- */}
 
-          <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5'>
+          <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5 scrolling-container'
+      >
             {/*------------------- serach set--------------------------  */}
 
             {itemsSearchValue.length > 0 ? filterDatas.length === 0 ? <p className='fs-6 fw-bold mt-5'>Give the correct name of the items</p>
@@ -197,7 +257,7 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
                 ) : (
                  
                   apiData.map((currentData,index) => (
-                    <div className="card col-1 my-lg-1 cardOuterWrapper" style={{ width: 17 + "rem" }} key={currentData.id}>
+                    <div className="card col-1 my-lg-1 cardOuterWrapper api-item" style={{ width: 17 + "rem" }} key={currentData.id}>
                       <div className='ImageWrapper'>
                           <div className='ImageInner'>
                             {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
@@ -223,6 +283,7 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
                   </div>
                     )
               )) } 
+                {isLoading && <p>Loading...</p>}
             </div>
 
             {cart.length === 0 ? 
@@ -336,9 +397,10 @@ function ShoppingCart({Cartdetails,removeFromCart,addToCart,formattedAmountSendT
             </div>
             </>
             }
+            
         </div>
     );
 }
 
-export default ShoppingCart;
+export default TestingPagelodaing;
  
