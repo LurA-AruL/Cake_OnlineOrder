@@ -231,7 +231,7 @@ const updateCart = (updatedCart) => {
                     <div className="card border-0 mb-1" style={{ maxWidth: 300 + "px" }} key={index}>
                       <div className="row px-3">
                         <div className="col-md-4 rounded py-2">
-                          <img src={e.item_image} className="img-fluid rounded" alt="no image found" />
+                          <img src={e.item_image[0]} className="img-fluid rounded" alt="no image found" />
                         </div>
                         <div className="col-md-8">
                           <div className="card-body">
