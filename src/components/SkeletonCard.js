@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import '../styles/Skeleton.css'
 
-const SkeletonCard = () => {
+export const SkeletonCard = () => {
 
     const [items, setItems] = useState([
-        {key:1},{key:2},{key:3},{key:4},{key:5},{key:6},{key:7},{key:8},
+        {key:1},{key:2},{key:3},{key:4},{key:5},{key:6},{key:7},{key:8},{key:9}
     ])
   return (
     <>
@@ -46,4 +46,22 @@ const SkeletonCard = () => {
   );
 };
 
-export default SkeletonCard;
+export const SkeletonCardBtn = () => {
+
+  const [items, setItems] = useState([
+      {key:1},{key:2},{key:3},{key:4},{key:5},{key:6}
+  ])
+return (
+  <>
+  {items.map((e,i) => (  
+      // <div className="custom-card col-3 my-lg-1 SkeletonDisMovie" style={{ width: '25px'}} key={i}>
+      <div className="skeletons-button" style={{height:'2rem',width:'12rem',marginLeft:'20px'}}>
+      </div>
+      // </div>
+  ))}
+</>
+);
+};
+
+
+// export {SkeletonCard,SkeletonCardBtn};

@@ -74,6 +74,12 @@
     /* background-color: #ccc; */
     margin-right: 8px; /* Adjust spacing between items */
   }
+
+   /* ---------------------------- Button Catecaries ---------------------------- */
+   .Btn_active{
+    background-color: green !important;
+    color: white !important;
+  }
 @media only screen  and (max-width:992px) and (min-width:0) {
 /* ------------------- Heart Icons ---------------- */
 /*----------------------- card_Main ---------------- */

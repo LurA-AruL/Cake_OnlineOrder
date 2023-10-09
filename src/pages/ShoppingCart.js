@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import '../styles/ShopingCart.css'
 // import TotalValus from '../components/TotalValus';
 import Delivery from '../components/Delivery';
-import SkeletonCard from '../components/SkeletonCard';
+import {SkeletonCard,SkeletonCardBtn} from '../components/SkeletonCard';
   // Import Axios
   import axios from 'axios';
 
