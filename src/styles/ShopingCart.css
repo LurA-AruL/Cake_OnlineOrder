@@ -77,8 +77,10 @@
 
    /* ---------------------------- Button Catecaries ---------------------------- */
    .Btn_active{
-    background-color: green !important;
-    color: white !important;
+    background-color: rgb(238, 238, 238) !important;
+    color: var(--text-color) !important;
+    font-weight:800 !important;
+    border-top: 2px solid var(--main-bg-color) !important;
   }
 @media only screen  and (max-width:992px) and (min-width:0) {
 /* ------------------- Heart Icons ---------------- */
