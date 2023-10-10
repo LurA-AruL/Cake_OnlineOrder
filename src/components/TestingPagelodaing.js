@@ -382,9 +382,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                         )) :
                                         <div className='text-center w-100'>
                                             <img src="assests/emptyCart_moblieView.png" className='w-75 front_corsur ' alt='no image found' />
-                                            <p>Your Carts is empty!</p>
-                                            <p>Looks like you haven't added any courses to your cart yet.</p>
-                                            <button className='btn border px-4 rounded-pill bg-success text-white py-2 fs-6'>ADD COURSES TO CART</button>
+                                            <p>Your Carts is empty</p>
+                                            <p>Looks like you haven't added any items to your cart yet.</p>
+                                            <button className='btn border px-4 rounded-pill bg-success text-white py-2 fs-6'>ADD ITEMS TO CART</button>
                                         </div>
                                     }
 
