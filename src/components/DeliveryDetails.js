@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 
-function DeliveryDetails({CartdetailstoDelivery,formattedAmount}) {
+function DeliveryDetails({CartdetailstoDelivery,formattedAmount,handleClose}) {
 
     const [orderSend, setOrderSend] = useState([]);
 
@@ -76,6 +76,8 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount}) {
     e.preventDefault();
 
     if (validateForm()) {
+
+      handleClose();
       // Submit the form data or perform further actions
       // console.log("Form is valid and can be submitted.");
       const Nil = '-Nil';

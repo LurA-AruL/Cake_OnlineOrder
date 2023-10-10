@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import DeliveryDetails from './DeliveryDetails';
 import PickupDelivery from './PickupDelivery';
 
-export default function Delivery({Cartdetails,formattedAmount}) {
+export default function Delivery({Cartdetails,formattedAmount,handleClose}) {
 
     const [delivery,SetDelivery] = useState(false);
     
@@ -45,7 +45,7 @@ export default function Delivery({Cartdetails,formattedAmount}) {
               </ul>
 
               <div className='w-100'>
-                  {delivery ? <DeliveryDetails CartdetailstoDelivery={Cartdetails}  formattedAmount={formattedAmount}/> : <PickupDelivery CartdetailstoDelivery={Cartdetails} formattedAmount={formattedAmount}/>}
+                  {delivery ? <DeliveryDetails CartdetailstoDelivery={Cartdetails}  formattedAmount={formattedAmount} handleClose={handleClose}/> : <PickupDelivery CartdetailstoDelivery={Cartdetails} formattedAmount={formattedAmount} handleClose={handleClose}/>}
               </div>
           </div>
     </>

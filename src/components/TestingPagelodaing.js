@@ -49,6 +49,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     // ------------------------ changing categeries values ----------------
     const [listCategories, setListCategories] = useState([])
     // const [changeApiCount, SetChangeApiCount] = useState(312);
+    
 
     // -------------------------- on scrolling values ------------------------------ 
 
@@ -63,6 +64,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?category=${categeriesCount}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`;
     // console.log(categorynumber,'categorynumber');
     
+    const handleViewCart = cart.length+1;
     const fetchMoreValues = async () => {
         setIsLoading(true);
         
@@ -254,30 +256,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
     return (
-        <div className=' w-100 position-relative'>
-            <h2 className='d-none fs-lg-1 ps-lg-0 fw-bold'>Available Items</h2>
+        <div className=' w-100 position-relative '>
             {/* ------------------------------------- The Avaible items Filters Buttom components here---------------------  */}
-            <div className='pt-3 pb-1 categorie position-sticky top-0 bg-white z-index_5'>
-                {/* <Swiper
-              slidesPerView={2}
-              spaceBetween={10}
-              centeredSlides={true}
-              pagination={{
-                clickable: false,
-              }}
-              modules={[Pagination]}
-              className="mySwiper d-md-none pb-5"
-            >
-              <SwiperSlide className='rounded'><button type='button' className='btn w-75 btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(biriyanilist)}>Biryani</button></SwiperSlide>
-              <SwiperSlide className='rounded'><button type='button' className='btn w-75 btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Mutton Dishes</button></SwiperSlide>
-              <SwiperSlide className='rounded'><button type='button' className='btn w-75 btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Mutton Dishes</button></SwiperSlide>
-              <SwiperSlide className='rounded'><button type='button' className='btn w-75 btn_menu border px-2 px-sm-4 ' onClick={(e) => setCartList(mutton_Dishes)}>Mutton Dishes</button></SwiperSlide>
-            </Swiper> */}
-
-                {/*-------------------------- desktop view  -----------------------------*/}
-
-
-                <div className='  slider-container py-2' >
+                <div className='slider-container py-2 categorie position-sticky top-0 bg-white z-index_5' >
                     {isskeletonbtn ? <SkeletonCardBtn /> : 
                     <>
                     <button type='button' className={`btn slider-item btn_menu border px-2 px-sm-4 ${allBtnActive  ? 'Btn_active' : ''} `} onClick={(ee) => AllCategoryFun()}>All</button>
@@ -287,16 +268,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     </div>
                     ))}</>}
                 </div>
-
-            </div>
-
-            {/* -----------------------button end----------------------- */}
-
-            <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5 scrolling-container'
-            >
-
-                {/*------------------- serach set--------------------------  */}
-
+                {/* -----------------------button end----------------------- */}
+            <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5 scrolling-container'>
+                 {/*------------------- serach set--------------------------  */}
                 {itemsSearchValue.length > 0 ? filterDatas.length === 0 ? <p className='fs-6 fw-bold mt-5'>Give the correct name of the items</p>
                     :
                     filterDatas.map((currentData) => (
@@ -308,9 +282,6 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                             <div className="card-body">
                                 <div className='d-flex justify-content-between'><h5 className="card-title">{currentData.title}</h5><div><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e) => addToCart({ item_id: currentData.id, item_name: currentData.title, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.img, event: e.target.id })}>Add</button></div></div>
                                 <div><span className='cardtext'><i className="bi bi-currency-rupee"></i>{currentData.price}</span></div>
-                                <div className='position-absolute top-100 start-50 translate-middle'>
-                                    {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
-                                </div>
                             </div>
                         </div>
                     ))
@@ -322,16 +293,16 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
                         apiData.map((currentData, index) => (
-                            <div className="card col-1 my-lg-1 cardOuterWrapper api-item" style={{ width: 17 + "rem" }} key={currentData.id}>
+                            <div className="card col-1 my-lg-1 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.id}>
                                 <div className='ImageWrapper'>
                                     <div className='ImageInner'>
                                         {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
                                         <img src={currentData.images.length > 1 ? currentData.images[0].src : currentData.images.map(e => e.src)} className="card-img-top cart_imgae" alt="no image found" />
                                     </div>
                                 </div>
-                                <div className="card-body px-0">
+                                <div className="card-body px-0 d-flex flex-column justify-content-center d-lg-bolck">
                                     <div className='d-flex justify-content-between'>
-                                        <div className='d-flex flex-column px-2'>
+                                        <div className='d-flex flex-column  px-2'>
                                             <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.name}</h5>
                                             <span className='CartPriceHome pt-1 fw-bold'>{currentData.price ? "Price: " + currentData.price : <></>}</span>
                                             <span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price && currentData.regular_price !== currentData.price ? "Regular Price: " + currentData.regular_price : <></>}</span>
@@ -343,22 +314,17 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
                                         {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                                     </div>
-                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.short_description.slice(0, 50) + '.....' }} />
+                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.short_description.slice(0, 30)+'...' }} />
                                 </div>
                             </div>
                         )
                         ))}
 
             </div>
+
+
+            {/* ----------------- view modal when the product increase then hide and hide  modal ------------------------- */}
             <div className='position-absolute'>{endOfCartText === true ? <p>end of the carts...</p> : isLoading === true ? <p>Loading...</p> : <></>}</div>
-
-            {cart.length === 0 ?
-
-                <></>
-
-                :
-
-                <>
                     {/* // ---------------------------- modal view carts --------------------------- */}
 
                     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" show={showModal} onHide={() => setShowModal(false)}>
@@ -374,8 +340,8 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                 {/* ----------------- display  modal body -------- */}
                                 <div className="modal-body">
                                     {/* ----------------- display  carts views-------- */}
-
-                                    {mobileCartDeliveryDis === true ? <Delivery formattedAmount={formattedAmountSendToMb} /> :
+                                    {cart.length !== 0 ? 
+                                    mobileCartDeliveryDis === true ? <Delivery formattedAmount={formattedAmountSendToMb} /> :
                                         cart.map((e, index) => (
                                             <div className="card border-0 mb-1 w-100" key={index}>
                                                 <div className="row px-3">
@@ -413,7 +379,13 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                                     </div>
                                                 </div>
                                             </div>
-                                        ))
+                                        )) :
+                                        <div className='text-center w-100'>
+                                            <img src="assests/emptyCart_moblieView.png" className='w-75 front_corsur ' alt='no image found' />
+                                            <p>Your Carts is empty!</p>
+                                            <p>Looks like you haven't added any courses to your cart yet.</p>
+                                            <button className='btn border px-4 rounded-pill bg-success text-white py-2 fs-6'>ADD COURSES TO CART</button>
+                                        </div>
                                     }
 
                                 </div>
@@ -421,7 +393,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                     <div className="modal-footer d-flex justify-content-between">
                                         <div className='d-flex w-100 justify-content-between'>
                                             <div className=' d-flex align-items-center'><span className='fw-bold'>Total {formattedAmountSendToMb}</span><i data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="bi bi-chevron-up ps-2 fs-6 upArrowModalBtn front_corsur"></i></div>
-                                            <div className='d-flex gap-2'><button type="submit" onClick={(() => setMobileCartDeliveryDis(true))} className="btn border w-100 bg-warning whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Order on Whatsapp</button></div>
+                                            <div className='d-flex gap-2'><button type="submit" onClick={(() => setMobileCartDeliveryDis(true))} className="btn border w-100 whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Order on Whatsapp</button></div>
                                         </div>
                                     </div>
                                     : <></>}
@@ -451,19 +423,23 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                         </div>
                     </div>
                     {/* // ----------------------------- modal end view ---------------------------- */}
+
+
+                    {/* -------------------- onclick condition show or hide ---------------- */}
+                    {cart.length === 0 ? <></> :
                     <div className='container footerCartrMb rounded position-fixed d-lg-none'>
                         <div className='row text-white p-2 footerCartrMb_TotalAmount'>
-                            <div className='col-5 d-flex  flex-column g-1 '>
-                                <div className='fw-bold items'><span className='items_Animation'>{cart.length} {cart.length > 1 ? "Items" : "Item"} </span><i data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="bi bi-chevron-up upArrowModalBtn front_corsur text-white"></i></div>
+                            <div className='col-5 d-flex  flex-column g-1' data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <div className='fw-bold items'><span className='items_Animation'>{cart.length} {cart.length > 1 ? "Items" : "Item"} </span><i className="bi bi-chevron-up upArrowModalBtn front_corsur text-white"></i></div>
                                 <div className='fw-bold'>Total: {formattedAmountSendToMb}</div>
                             </div>
                             {/* <div className='col-3 ps-1 text-end position-relative'>View<span className="position-absolute top-0 start-100 translate-middle badge rounded bg-white text-dark badge_footerMb">{cart.length}</span></div> */}
-                            <div className='col-7 p-0 d-flex justify-content-end  align-items-center'><button type="button" onClick={(() => setMbViewDirect(true))} className="btn footerCartrMb_OrdeBtn me-2 text-success" data-bs-toggle="modal" data-bs-target="#MovieViewDirectDelivery"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button></div>
+                            <div className='col-7 p-0 d-flex justify-content-end  align-items-center'>
+                                <button type="button" onClick={(() => setMbViewDirect(true))} className="btn footerCartrMb_OrdeBtn me-2 text-success" data-bs-toggle="modal" data-bs-target="#MovieViewDirectDelivery"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button>
+                            </div>
                         </div>
                     </div>
-                </>
-            }
-
+                    }
         </div>
     );
 }

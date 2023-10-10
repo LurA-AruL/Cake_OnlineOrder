@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 
-function PickupDelivery({ CartdetailstoDelivery,formattedAmount}) {
+function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
 
     const [orderSend, setOrderSend] = useState([]);
     const [specialComments,setSpecialComments] = useState(false);
@@ -68,7 +68,10 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount}) {
 
         if (validateForm()) {
 
+            handleClose();
+
             // console.log(specialComments,'condition');
+
             // Submit the form data or perform further actions
             // console.log("Form is valid and can be submitted.");
             const Nil = '-Nil';

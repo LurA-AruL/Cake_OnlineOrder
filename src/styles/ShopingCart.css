@@ -86,7 +86,7 @@
 /* ------------------- Heart Icons ---------------- */
 /*----------------------- card_Main ---------------- */
 .card_Main{
-  background-color: rgba(238, 238, 238, 0.363);
+  /* background-color: rgba(238, 238, 238, 0.363); */
     display: flex;
     justify-content: space-around;
     }
@@ -103,15 +103,16 @@
   /*--------------------- carts image-------------------- */
   /* card_imgae */
   .ImageWrapper{
-    height: 150px !important;
+    height: 140px !important;
   }
   .ImageInner{
     width: 120px !important;
     padding: 2px;
-    height: 140px !important;
+    height: 138px !important;
   }
 .cart_imgae{
   width: 100% !important;
+  border-radius: 15% !important;
   min-height: 100% !important;
   }
   .Shoping_cartTitle{
@@ -122,14 +123,15 @@
     width: 90% !important;
     display: flex;
     flex-direction: row !important;
+    border: none !important;
 }
 /* .cardOuterWrapper > div{
     height: 100px !important;
 } */
 
-.cardOuterWrapper > div > img{
+/* .cardOuterWrapper > div > img{
     border-radius: 10px !important;
-}
+} */
 /* ----------------- categorie ---------------- */
 .categorie{
     z-index: 2;
