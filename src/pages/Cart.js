@@ -144,7 +144,7 @@ export default function Cart({cartreciveFun}) {
                               <div className="card-price SideCardprice d-flex"><i className="bi bi-currency-rupee "></i><span>
                                 {getData.map((item, index) => (
                                   <div key={index} className=''>
-                                    {item.item_id == e.item_id ? + item.item_qty * item.item_price : <></>}
+                                    {item.item_id == e.item_id ? + (item.item_qty * item.item_price).toFixed(2) : <></>}
                                   </div>
                                 ))}
                               </span>

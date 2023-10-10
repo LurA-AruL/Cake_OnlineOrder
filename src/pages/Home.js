@@ -143,7 +143,7 @@ const updateCart = (updatedCart) => {
 
       setAlertOfAddCart(false);
 
-    }, 8000);
+    }, 1000);
   };
 
   // ---------------------------------- Aside Carts items Removing function here --------------------------------   

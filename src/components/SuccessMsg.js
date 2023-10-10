@@ -12,7 +12,7 @@ function SuccessMsg() {
   return (
     <Row>
       <Col>
-        <Toast onClose={() => setShow(false)} show={show} delay={8000} autohide>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
           {/* <Toast.Header>
             <img
               src="holder.js/20x20?text=%20"
@@ -22,7 +22,7 @@ function SuccessMsg() {
             <strong className="me-auto">Bootstrap</strong>
             <small>11 mins ago</small>
           </Toast.Header> */}
-          <Toast.Body>You added one more!</Toast.Body>
+          <Toast.Body className='bg-success rounded text-center text-white'>Successfully Added.</Toast.Body>
           {/* <div class="cracker"></div> */}
         </Toast>
       </Col>
