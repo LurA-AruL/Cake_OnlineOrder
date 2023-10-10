@@ -1,3 +1,10 @@
+/* ------------- card_Main --------------- */
+
+.card_Main{
+  width: 98%;
+  margin: auto;
+}
+
 /* -------------- --------- */
 .categorie{
     border-bottom:1px solid orange;

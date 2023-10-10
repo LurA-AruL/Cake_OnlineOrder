@@ -75,7 +75,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
             setIsLoading(true);
             setIsLoadingPage(false);
             setisskeletonbtn(false);
-            console.log(categorynumber,'checking')
+            console.log(categorynumber,'categorynumber')
             if(categorynumber <= categoryIndex){
                 SetEndOfCartText(true);
             }else{
@@ -198,9 +198,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     const fetchListCategories = async () => {
         try {
             const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products/categories?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
-            setListCategories(response.data);
-            //   console.log(response.data.map(e => e.id),'Categories list');
-            setCategorynumber(response.data.map(e => e.id));
+            setListCategories(response.data.filter(e => e.count !== 0));
+            //   console.log(response.data.filter(e => e.count !== 0).map(e => e.id),'Categories list');
+            setCategorynumber(response.data.filter(e => e.count !== 0).map(e => e.id));
             setIsLoadingPage(false);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -269,7 +269,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     ))}</>}
                 </div>
                 {/* -----------------------button end----------------------- */}
-            <div className='d-flex gap-2 flex-wrap py-2 card_Main  z-index_-5 scrolling-container'>
+            <div className='d-flex gap-3 flex-wrap py-2 card_Main  z-index_-5 scrolling-container'>
                  {/*------------------- serach set--------------------------  */}
                 {itemsSearchValue.length > 0 ? filterDatas.length === 0 ? <p className='fs-6 fw-bold mt-5'>Give the correct name of the items</p>
                     :
@@ -293,7 +293,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
                         apiData.map((currentData, index) => (
-                            <div className="card col-1 my-lg-1 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.id}>
+                            <div className="card col-1 my-lg-1 border-0 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.id}>
                                 <div className='ImageWrapper'>
                                     <div className='ImageInner'>
                                         {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
