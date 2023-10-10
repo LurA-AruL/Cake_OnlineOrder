@@ -77,7 +77,7 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount,handleClose}) {
 
     if (validateForm()) {
 
-      handleClose();
+      // handleClose();
       // Submit the form data or perform further actions
       // console.log("Form is valid and can be submitted.");
       const Nil = '-Nil';

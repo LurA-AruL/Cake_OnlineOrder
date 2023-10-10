@@ -68,7 +68,7 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
 
         if (validateForm()) {
 
-            handleClose();
+            // handleClose();
 
             // console.log(specialComments,'condition');
 
