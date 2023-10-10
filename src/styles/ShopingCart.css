@@ -89,6 +89,16 @@
     font-weight:800 !important;
     border-top: 2px solid var(--main-bg-color) !important;
   }
+
+
+  /* ----------------toggle handle on click add----------------- */
+  .add_message{
+    width: 50% !important;
+    left: 25%;
+    bottom: 120px;
+    /* z-index: 3; */
+    /* transition:  0s, 0.5s linear; */
+  }
 @media only screen  and (max-width:992px) and (min-width:0) {
 /* ------------------- Heart Icons ---------------- */
 /*----------------------- card_Main ---------------- */
@@ -153,7 +163,10 @@
   .plubtn{
     font-size: 10pt !important;
   }
-
+  .plubtn:hover{
+    background-color: var(--main-bg-color) !important;
+    color:rgb(233, 217, 217) !important;
+  }
   /* -------------------- barge icon footer --------------- */
   .badge_footerMb{
     font-size: 6pt !important;
@@ -182,8 +195,8 @@
   }
   /* ------------------ foter cart view moblie */
   .footerCartrMb{
-    width: 80% !important;
-    left: 10%;
+    width: 90% !important;
+    left: 5%;
     background-color: var(--main-bg-color) !important;
     bottom: 65px;
     z-index: 3;

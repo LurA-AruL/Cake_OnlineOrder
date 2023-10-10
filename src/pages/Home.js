@@ -27,6 +27,9 @@ export default function Home({inputRef,cartItems}) {
   // -------------------- add to carts animation in css -----------------------
     const [isClicked, setIsClicked] = useState(false);
 
+     //------------- alert Add to carts toasted----------
+
+     const [alertOfAddCart,setAlertOfAddCart] = useState(false);
 
     // ------------------- Model show and hide -------------------------
     const [show, setShow] = useState(false);
@@ -133,6 +136,14 @@ const updateCart = (updatedCart) => {
     }
     // handleClick();
 
+    // --------------------- set Toasted toggle -------------------------- 
+    setAlertOfAddCart(true);
+
+    setTimeout(() => {
+
+      setAlertOfAddCart(false);
+
+    }, 8000);
   };
 
   // ---------------------------------- Aside Carts items Removing function here --------------------------------   
@@ -184,10 +195,12 @@ const updateCart = (updatedCart) => {
             </div>
             <div className="carousel-inner">
             <div className="carousel-item active">
-                <img src="zukaImage/banner1.jpeg" className="panner_image" alt="no image found" />
+                <img src="zukaImage/banner1.jpeg" className="panner_image d-none d-lg-block" alt="no image found" />
+                <img src="zukaImage/banner1_smallScale.png" className="panner_image  d-lg-none" alt="no image found" />
               </div>
               <div className="carousel-item ">
-                <img src="zukaImage/banner2.jpeg" className="panner_image" alt="no image found" />
+                <img src="zukaImage/banner2.jpeg" className="panner_image  d-none d-lg-block" alt="no image found" />
+                <img src="zukaImage/banner2_smallScale.png" className="panner_image d-lg-none" alt="no image found" />
               </div>
             </div>
           </div>
@@ -198,7 +211,7 @@ const updateCart = (updatedCart) => {
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
             
-            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} />
+            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} />
             {/* <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/> */}
           </div>
 

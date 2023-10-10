@@ -14,10 +14,11 @@ import {SkeletonCard,SkeletonCardBtn} from '../components/SkeletonCard';
 import axios from 'axios';
 import { render } from "react-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import SuccessMsg from './SuccessMsg';
 
 
 
-function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText }) {
+function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart }) {
 
     const [cart, setCart] = useState(Cartdetails);
      //--------------------------------- Axois Api key  -----------------------
@@ -49,6 +50,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     // ------------------------ changing categeries values ----------------
     const [listCategories, setListCategories] = useState([])
     // const [changeApiCount, SetChangeApiCount] = useState(312);
+
+   
+
     
 
     // -------------------------- on scrolling values ------------------------------ 
@@ -424,8 +428,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     </div>
                     {/* // ----------------------------- modal end view ---------------------------- */}
 
-
+                    <div className='position-fixed add_message'>{alertOfAddCart === true ?  <SuccessMsg /> : <></>}</div>
                     {/* -------------------- onclick condition show or hide ---------------- */}
+                    
                     {cart.length === 0 ? <></> :
                     <div className='container footerCartrMb rounded position-fixed d-lg-none'>
                         <div className='row text-white p-2 footerCartrMb_TotalAmount'>
