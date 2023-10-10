@@ -314,7 +314,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
                                         {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                                     </div>
-                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.short_description.slice(0, 30)+'...' }} />
+                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.short_description.slice(0, 50)+'...' }} />
                                 </div>
                             </div>
                         )
