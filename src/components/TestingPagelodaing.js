@@ -324,7 +324,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
             {/* ----------------- view modal when the product increase then hide and hide  modal ------------------------- */}
-            <div className='position-absolute'>{endOfCartText === true ? <p>end of the carts...</p> : isLoading === true ? <p>Loading...</p> : <></>}</div>
+            {/* <div className='position-absolute'>{endOfCartText === true ? <p>end of the carts...</p> : isLoading === true ? <p>Loading...</p> : <></>}</div> */}
                     {/* // ---------------------------- modal view carts --------------------------- */}
 
                     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" show={showModal} onHide={() => setShowModal(false)}>
