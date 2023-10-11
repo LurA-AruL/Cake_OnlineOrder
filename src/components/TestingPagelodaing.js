@@ -15,7 +15,7 @@ import axios from 'axios';
 import { render } from "react-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SuccessMsg from './SuccessMsg';
-
+import ConformationForm from './ConformationForm';
 
 
 function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart }) {
@@ -79,20 +79,20 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
             setIsLoading(true);
             setIsLoadingPage(false);
             setisskeletonbtn(false);
-            console.log(categorynumber,'categorynumber')
+            // console.log(categorynumber,'categorynumber')
             if(categorynumber <= categoryIndex){
                 SetEndOfCartText(true);
             }else{
                 SetEndOfCartText(false);
             }
             // console.log(data.length , 'dataLength............')
-            console.log(page, 'page');
+            // console.log(page, 'page');
             if (data.length === 0) {
-                console.log(categorynumber.length, 'categorynumber.length............')
+                // console.log(categorynumber.length, 'categorynumber.length............')
                 // if (2 >= categoryIndex) {
                     if(categorynumber.length >= categoryIndex){
                     setcategoryIndex(categoryIndex + 1);
-                    console.log(categoryIndex, 'index..................');
+                    // console.log(categoryIndex, 'index..................');
                     let x = categorynumber[categoryIndex];
                     setPage(1);
                     setcategeriesCount(x);
@@ -421,7 +421,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                 <div className="modal-body">
                                     {/* ----------------- display  carts views-------- */}
 
-                                    {mbViewDirect === true ? <Delivery formattedAmount={formattedAmountSendToMb} /> : <></>}
+                                    {mbViewDirect === true ? <ConformationForm /> : <></>}
                                 </div>
                             </div>
                         </div>

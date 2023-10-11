@@ -70,7 +70,7 @@ const cartItems = (cardItemValue) => {
       <Link
         onClick={focusChildInput}
         className={` w-100 text-center d-lg-none ${activeIcon === 'search' ? 'navLink_icons_active' : ''}`}
-        to="#"
+        to="/Portfolio"
       >
         <i className={`icons border-0  NavBarFooter_inner_icons bi bi-search text-secondary ${activeIcon === 'search' ? 'NavBarFooter_inner_icons_active' : ''}`}></i>
       </Link>
@@ -96,7 +96,7 @@ const cartItems = (cardItemValue) => {
       <Link
         onClick={() => handleIconClickOne('portfolio')}
         className={` w-100 text-center d-none ${activeIcon === 'portfolio' ? 'navLink_icons_active' : ''}`}
-        to="/portfolio"
+        to="/Portfolio"
       >
         <i className={`icons border-0 NavBarFooter_inner_icons bi bi-person-gear text-black ${activeIcon === 'portfolio' ? 'NavBarFooter_inner_icons_active' : ''}`}></i>
       </Link>
@@ -108,7 +108,7 @@ const cartItems = (cardItemValue) => {
         <Route path='/' element={<Home   inputRef={childInputRef}  cartItems={cartItems}/>} />
         <Route path='/Cart' element={<Cart cartreciveFun={cartItems} />} />
         <Route path='/WishList' element={<WishList />} />
-        <Route path='/portfolio' element={<Portfolio />} />
+        <Route path='/Portfolio' element={<Portfolio />} />
       </Routes>
       </Router>
       </div>

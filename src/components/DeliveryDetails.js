@@ -114,7 +114,8 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
       // console.log(document.forms[0][3].value = " ");
       // console.log(document.forms[0][4].value = " ");
 
-            window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
+      window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`, '_blank');    
+      // window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
     } else {
       console.log("Form has errors and cannot be submitted.");
     }

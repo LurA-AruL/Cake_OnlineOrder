@@ -5,6 +5,8 @@ import ShoppingCart from './ShoppingCart';
 import axios from 'axios';
 import TestingPagelodaing from '../components/TestingPagelodaing'
 import { Button, Modal } from 'react-bootstrap';
+import SearchItems from '../components/SearchItems';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home({inputRef,cartItems}) {
 
@@ -216,6 +218,7 @@ const updateCart = (updatedCart) => {
           </div>
 
         {/*------------------------------------- The Main Session to be end.... ---------------------  */}
+
         {/* --------------------------------------------- modal start ----------------------------------- */}
 
         <Modal show={show} onHide={handleClose}>
