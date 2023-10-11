@@ -1,5 +1,7 @@
 
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import SuccessMsg from "./SuccessMsg";
 
 function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
 
@@ -26,6 +28,8 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
         phoneNumber: "",
         comments: "",
     });
+
+  
 
     const minLength = 3; // Minimum length of the name
     const maxLength = 40; // Maximum length of the name
@@ -62,6 +66,7 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
         // Return true if there are no errors, false otherwise
         return Object.values(newErrors).every((error) => !error);
     };
+    var sendData ;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -100,7 +105,7 @@ ${deliveryDetails}
 
     _Kindly confirm the above details to proceed with your order_ 👆`;
 
-            const sendData = encodeURIComponent(message);
+             sendData = encodeURIComponent(message);
 
             // console.log(document.forms[0][0].value = " ");
             // console.log(document.forms[0][1].value = " ");
@@ -109,12 +114,28 @@ ${deliveryDetails}
             // formDataRecivings("hai");
 
             // window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
-            window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`, '_blank');
+            // window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`, '_blank');
+            handlePostRequest();
         } else {
             console.log("Form has errors and cannot be submitted.");
         }
 
     };
+
+    const handlePostRequest = async () => {
+        try {
+            const phone = '91'+formData.phoneNumber;
+            console.log(phone)
+          const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`);
+    
+          // Handle the response
+          console.log('Response:', response.data);
+        //   ✅
+        } catch (error) {
+          // Handle errors
+          console.error('Error:', error);
+        }
+      };
 
     const handleChange = (e) => {
         const { name, value } = e.target;

@@ -1,14 +1,12 @@
 import React ,{useState,useEffect}from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import OptForm from './OptForm';
 
 
 export default function ConformationForm() {
 
     const [orderSend, setOrderSend] = useState([]);
     const [specialComments,setSpecialComments] = useState(false);
-    const [OptformData, setOptFormData] = useState({
-        name: ""
-    });
     
     
     // ------------------- Model show and hide -------------------------
@@ -90,6 +88,10 @@ export default function ConformationForm() {
             // Submit the form data or perform further actions
             const sendData = Math.floor(100000 + Math.random() * 900000).toString();
             console.log(sendData)
+           
+            setTimeout(() => {
+            updateCart('');   
+            }, 5000);
 
             updateCart(sendData);
 
@@ -116,23 +118,6 @@ export default function ConformationForm() {
 
     };
 
-    const handleOptCheck = (event) => {
-        event.preventDefault();
-        handleOptInput();
-        if(orderSend === OptformData.name){
-            console.log('done');
-        }
-    }
-    const handleOptInput = (e) => {
-        const { name,value } = e.target;
-
-        setOptFormData({
-            ...OptformData,
-            [name]: value,
-        });
-
-
-    };
     
 
   return (
@@ -140,29 +125,7 @@ export default function ConformationForm() {
         {/* ----------------------------- otp form area--------------------------------*/}
 
         <Modal show={shows} onHide={handleCloses}>
-        <Modal.Header closeButton>
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Order Details</h1>
-        </Modal.Header>
-        <Modal.Body>
-            <form onSubmit={((e) => handleOptCheck(e))} className="needs-validation" noValidate>
-                <div className="mb-3">
-                <label htmlFor="sixDigitInput" className="form-label">Enter 6-Digit Code:</label>
-                <input
-                    type="text"
-                    id="sixDigitInput"
-                    name="sixDigitInput"
-                    pattern="[0-9]{6}"
-                    onChange={handleOptInput}
-                    className="form-control"
-                    required
-                />
-                <div className="invalid-feedback">
-                    Please enter a valid 6-digit code.
-                </div>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        </Modal.Body>
+            <OptForm  orderSend={orderSend}/>
       </Modal>
 
        
