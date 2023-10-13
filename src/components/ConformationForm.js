@@ -167,6 +167,10 @@ It will expire in the next 60 seconds
 
         <div className=''>
             <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
+            <div className='d-flex justify-content-between mb-3 border-bottom'>
+                  <label htmlFor="sixDigitInput" className="form-label fw-bold">Your Order details</label>
+                <label onClick={() => setMbViewDirect(false)} className='fw-bold fs-6 cursor_pointer'>X</label>
+            </div>
         <div className="form-group">
             <label htmlFor="name" className="CustorName" >Name:</label>
             <input
