@@ -1,3 +1,15 @@
 .otpOuterWrapper{
     /* background-color: rgba(0, 0, 0, 0.449); */
 }
+.CustorName,.Custorphone{
+    font-size: 12pt;
+    font-weight: 600;
+}
+.CustorName_input,.Custorphone_input{
+    padding: 14px !important;
+    border: 0 !important;
+}
+.CustorName_input::placeholder,.Custorphone_input::placeholder{
+    font-size: 10pt !important;
+    border: 0 !important;
+}

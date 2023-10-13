@@ -165,12 +165,13 @@ It will expire in the next 60 seconds
         
         :
 
-        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
+        <div className=''>
+            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
         <div className="form-group">
-            <label htmlFor="name" className="font_Headers">Name:</label>
+            <label htmlFor="name" className="CustorName" >Name:</label>
             <input
                 type="text"
-                className="form-control border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
+                className="form-control CustorName_input border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
                 placeholder='Your name'
                 id="name"
                 name="name"
@@ -181,10 +182,10 @@ It will expire in the next 60 seconds
         </div>
 
         <div className="form-group">
-            <label htmlFor="phoneNumber" className="font_Headers">Contact Number:</label>
+            <label htmlFor="phoneNumber" className="Custorphone">Contact Number:</label>
             <input
                 type="text"
-                className="form-control border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
+                className="form-control Custorphone_input border-0 border-bottom border-white-50 rounded-0 px-0 py-1"
                 placeholder='Enter contact number'
                 id="phoneNumber"
                 name="phoneNumber"
@@ -200,6 +201,7 @@ It will expire in the next 60 seconds
             <div className="w-75 text-end p-2"><button type="submit" className="btn border whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
         </div> */}
     </form>
+        </div>
     }
 </div>
   )
