@@ -46,7 +46,7 @@
   }
   .plubtn:hover{
     transition: all 0.5s;
-    background-color: white !important;
+    background-color: rgba(88, 59, 10, 0.458) !important;
     color:var(--text-color) !important;
   }
 

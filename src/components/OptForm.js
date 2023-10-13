@@ -16,6 +16,7 @@ export default function OptForm({orderSend,setMbViewDirect,customerPhNo}) {
       setSeconds(prevSeconds => prevSeconds - 1);
     }, 1000);
 
+
     // Clear the interval after 50 seconds
     setTimeout(() => {
       clearInterval(intervalId);
@@ -23,7 +24,7 @@ export default function OptForm({orderSend,setMbViewDirect,customerPhNo}) {
 
     
         // Cleanup the interval when the component unmounts
-    return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
   }, []);
 
     const handleOptCheck = (event) => {

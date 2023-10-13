@@ -112,7 +112,7 @@ It will expire in the next 60 seconds
 
             setIsoptOption(true);
 
-            handlePostRequest(message);
+            // handlePostRequest(message);
 
             console.log("Form is valid and can be submitted.",orderSend);
 
@@ -126,20 +126,18 @@ It will expire in the next 60 seconds
 
     };
 
-    const handlePostRequest = async (message) => {
-        try {
-            const phone = '91'+formData.phoneNumber;
-            console.log(phone)
-          const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${message}&instance_id=65263295BD8BC&access_token=652631278d3af`);
+    // const handlePostRequest = async (message) => {
+    //     try {
+    //       const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${message}&instance_id=65263295BD8BC&access_token=652631278d3af`);
     
-          // Handle the response
-          console.log('Response:', response.data);
-        //   ✅
-        } catch (error) {
-          // Handle errors
-          console.error('Error:', error);
-        }
-      };
+    //       // Handle the response
+    //       console.log('Response:', response.data);
+    //     //   ✅
+    //     } catch (error) {
+    //       // Handle errors
+    //       console.error('Error:', error);
+    //     }
+    //   };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
