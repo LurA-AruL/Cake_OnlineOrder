@@ -54,7 +54,9 @@ function DeliveryDetails({CartdetailstoDelivery,formattedAmount,handleClose}) {
       newErrors.phoneNumber = "Phone Number must contain only numbers";
     } else if(phoneNumber.length !== 10){
       newErrors.phoneNumber = "Phone Number must be 10 numbers";
-    }
+    }else if (!/^[6-9]\d{9}$/.test(phoneNumber)){
+      newErrors.phoneNumber = "Invalid Phone Number";
+  }
 
     // Simple validation for address1 (required)
     if (!address1) {
@@ -113,13 +115,28 @@ _Kindly confirm the above details to proceed with your order_ 👆`;
       // console.log(document.forms[0][2].value = " ");
       // console.log(document.forms[0][3].value = " ");
       // console.log(document.forms[0][4].value = " ");
-
-      window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`, '_blank');    
+      // handlePostRequest( )
+      // window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`, '_blank');    
       // window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
     } else {
       console.log("Form has errors and cannot be submitted.");
     }
   };
+
+  // const handlePostRequest = async () => {
+    //     try {
+    //         const phone = '91'+formData.phoneNumber;
+    //         console.log(phone)
+    //       const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`);
+    
+    //       // Handle the response
+    //       console.log('Response:', response.data);
+    //     //   ✅
+    //     } catch (error) {
+    //       // Handle errors
+    //       console.error('Error:', error);
+    //     }
+    //   }
 
   const handleChange = (e) => {
     const { name, value } = e.target;

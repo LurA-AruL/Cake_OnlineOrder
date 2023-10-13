@@ -8,8 +8,13 @@ import '../styles/conformation.css'
 
 export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect}) {
 
+    const [OtpNumber, setOtpNumber] = useState([]);
     const [orderSend, setOrderSend] = useState([]);
-    const [specialComments,setSpecialComments] = useState(false);
+
+    // cart details send to child 
+
+    const [orderitemsSendChild,setorderitemsSendChild] = useState('');
+    
     
 
     // optOption conditon 
@@ -25,17 +30,20 @@ export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbVi
 
     useEffect(() => {
 
-        const storedCart = JSON.parse(localStorage.getItem('Conform')) || [];
-        setOrderSend(storedCart);
-        // console.log("trying");
+        const Get_optnumber = JSON.parse(localStorage.getItem('Conform')) || [];
+        setOtpNumber(Get_optnumber);
+
+        // cart values 
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        setOrderSend(storedCart); 
         
     }, []);
 
-    const updateCart = (updatedCart) => {
+    const updateOtp = (updatedNumbers) => {
         // Update the cart in component state
-        setOrderSend(updatedCart);
+        setOtpNumber(updatedNumbers);
         // Update the cart in localStorage
-        localStorage.setItem('Conform', JSON.stringify(updatedCart));
+        localStorage.setItem('Conform', JSON.stringify(updatedNumbers));
       
         // cart value increase
       };
@@ -60,24 +68,26 @@ export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbVi
         const newErrors = {};
 
         // // Simple validation for name (required)
-        // if (!name) {
-        //     newErrors.name = "Name is required";
-        // } else if (name.length < minLength || name.length > maxLength) {
-        //     newErrors.name = "min 3 & max 40 letters";
-        // } else if (!validCharsRegex.test(name)) {
-        //     newErrors.name = "Name is only letters";
-        // }
+        if (!name) {
+            newErrors.name = "Name is required";
+        } else if (name.length < minLength || name.length > maxLength) {
+            newErrors.name = "min 3 & max 40 letters";
+        } else if (!validCharsRegex.test(name)) {
+            newErrors.name = "Name is only letters";
+        }
 
 
 
         // Simple validation for phone number (required, numeric)
-        // if (!phoneNumber) {
-        //     newErrors.phoneNumber = "Phone Number is required";
-        // } else if (!/^\d+$/.test(phoneNumber)) {
-        //     newErrors.phoneNumber = "Phone Number must contain only numbers";
-        // } else if (phoneNumber.length !== 10) {
-        //     newErrors.phoneNumber = "Phone Number must be 10 numbers";
-        // }
+        if (!phoneNumber) {
+            newErrors.phoneNumber = "Phone Number is required";
+        } else if (!/^\d+$/.test(phoneNumber)) {
+            newErrors.phoneNumber = "Phone Number must contain only numbers";
+        } else if (phoneNumber.length !== 10) {
+            newErrors.phoneNumber = "Phone Number must be 10 numbers";
+        } else if (!/^[6-9]\d{9}$/.test(phoneNumber)){
+            newErrors.phoneNumber = "Invalid Phone Number";
+        }
        
         // Simple validation for comments (required)
 
@@ -87,17 +97,12 @@ export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbVi
         return Object.values(newErrors).every((error) => !error);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        if (validateForm()) {
-             // Submit the form data or perform further actions
-             const sendData = Math.floor(100000 + Math.random() * 900000).toString();
-
-             console.log(sendData,'otp');
+    const otpGenerateFun = () => {
+        const sendOtp = Math.floor(100000 + Math.random() * 900000).toString();
 
             const message = `
-Your verification OTP is ${sendData}.
+Your verification OTP is ${sendOtp}.
 It will expire in the next 60 seconds
  - Powered by DIGITAL FACTORY`;
 
@@ -105,16 +110,54 @@ It will expire in the next 60 seconds
            console.log(message,'message');
             // console.log(message,'message')
             setTimeout(() => {
-            updateCart('');   
+            updateOtp('');   
             }, 60000);
 
-            updateCart(sendData);
+            updateOtp(sendOtp);
 
-            setIsoptOption(true);
+            handlePostRequest();
+    }
 
-            // handlePostRequest(message);
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-            console.log("Form is valid and can be submitted.",orderSend);
+        if (validateForm()) {
+
+//              const Nil = '-Nil';
+//             const total = orderSend.map(e => e.item_qty *  e.item_price).reduce((e,ee) => e+ee );
+//             const orderDetails = orderSend.map(event => `${event.item_qty} x ${event.item_name} = ${event.item_qty * event.item_price}`);
+//             const deliveryDetails = `Name: ${formData.name}\nContact Number: ${formData.phoneNumber}`;
+//             const orderListOitems = `
+// *Dear Customer,*
+
+//     Thank you for placing an order with *Zuka Chocolate* 😋.
+
+// *Your Order Details:* 📋
+
+// ${orderDetails.join('\n')}
+
+// *Total Amount* = ${total} /-
+
+// *Delivery Information:* 🛵 
+
+// ~Delivery~ / Pickup Details:
+
+// ${deliveryDetails}
+
+// *Special Instruction:* 🎯
+
+
+//     _Kindly confirm the above details to proceed with your order_ 👆`;
+
+//             const  sendData = encodeURIComponent(orderListOitems);
+
+             // Submit the form data or perform further actions
+            //  setorderitemsSendChild(sendData);
+            //  console.log(sendData,'oder list');
+
+            otpGenerateFun();
+
+            console.log("Form is valid and can be submitted.",OtpNumber);
 
             // handleShows();
 
@@ -126,18 +169,41 @@ It will expire in the next 60 seconds
 
     };
 
-    // const handlePostRequest = async (message) => {
+    const handlePostRequest = async () => {
+
+
+        // Define the data you want to send in the POST request
+ const data = {
+    name: formData.name,
+    mobile_number: formData.phoneNumber
+    };
+   
+    // Make a POST request using Axios
+    axios.post('https://digitalfactory.co.in/dfi/api/otp', data)
+    .then(response => {
+  console.log(response);
+
+    setIsoptOption(true);
+    this.setState({ response: response.data });
+    })
+    .catch(error => {
+    // Handle any errors here
+    // console.error('Error:', error);
+    });
+
     //     try {
-    //       const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${message}&instance_id=65263295BD8BC&access_token=652631278d3af`);
-    
-    //       // Handle the response
+    //     const PhoneNumber = formData.phoneNumber;
+    //         console.log(formData.phoneNumber,'phone')
+    //     //   const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${message}&instance_id=65263295BD8BC&access_token=652631278d3af`);
+    //           const response = await axios.get(`http://smsc.biz/httpapi/send?username=kalil@digitalfactoryindia.com&password=Pondy605001&sender_id=DGFYIN&route=T&phonenumber=7094030845&message=12345 is your DIGITAL FACTORY verification code.`)
+    //     // Handle the response
     //       console.log('Response:', response.data);
     //     //   ✅
     //     } catch (error) {
     //       // Handle errors
     //       console.error('Error:', error);
     //     }
-    //   };
+      };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -158,7 +224,7 @@ It will expire in the next 60 seconds
         {isOptOption === true  ? 
 
         <div className=''>
-             <OptForm  orderSend={orderSend}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber}/> 
+             <OptForm  OtpNumber={OtpNumber}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber} orderitemsSendChild={orderitemsSendChild} handleSubmit={otpGenerateFun}/> 
         </div>
         
         :

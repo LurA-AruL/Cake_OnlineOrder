@@ -285,8 +285,8 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     {isskeletonbtn ? <SkeletonCardBtn /> : 
                     <>
                     <button type='button' className={`btn slider-item btn_menu border px-2 px-sm-4 ${allBtnActive  ? 'Btn_active' : ''} `} onClick={(ee) => AllCategoryFun()}>All</button>
-                    {listCategories.map(e => (
-                        <div className='slider-item'>
+                    {listCategories.map((e,index) => (
+                        <div className='slider-item' key={index}>
                             <button type='button' className={`btn w-100 btn_menu border px-2 px-sm-4 ${allBtnActive ? '' : activeCategory === e ? 'Btn_active' : ''} `} onClick={(ee) => handleCategries(e.id, e)}>{e.name}</button>
                     </div>
                     ))}</>}

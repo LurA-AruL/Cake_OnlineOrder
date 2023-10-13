@@ -57,6 +57,8 @@ function PickupDelivery({ CartdetailstoDelivery,formattedAmount,handleClose}) {
             newErrors.phoneNumber = "Phone Number must contain only numbers";
         } else if (phoneNumber.length !== 10) {
             newErrors.phoneNumber = "Phone Number must be 10 numbers";
+        }else if (!/^[6-9]\d{9}$/.test(phoneNumber)){
+            newErrors.phoneNumber = "Invalid Phone Number";
         }
        
         // Simple validation for comments (required)

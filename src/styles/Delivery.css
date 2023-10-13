@@ -52,7 +52,7 @@
         color: white !important;
     }
     .whatsappBtn:hover{
-        background-color: white !important;
+        background-color: rgba(80, 53, 29, 0.219) !important;
         color:var(--text-color) !important;
     }
     /* delivery types buttons */

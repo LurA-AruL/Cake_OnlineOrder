@@ -55,7 +55,7 @@ return (
   <>
   {items.map((e,i) => (  
       // <div className="custom-card col-3 my-lg-1 SkeletonDisMovie" style={{ width: '25px'}} key={i}>
-      <div className="skeletons-button" style={{height:'2rem',width:'12rem',marginLeft:'20px'}}>
+      <div className="skeletons-button" style={{height:'2rem',width:'12rem',marginLeft:'20px'}} key={i}>
       </div>
       // </div>
   ))}
