@@ -40,6 +40,10 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     // ------------------------- Modal view and hide automatically -------------------
     const [showModal, setShowModal] = useState(false);
 
+    // opt success then  MOdal close automatically
+    
+    const [optSucessThenAutoCloseModal,setoptSucessThenAutoCloseModal] = useState(false);
+
     //------------------------- searching items----------------------
     const [filterDatas, setFilteredDatas] = useState([])
     //------------------------- searching items end----------------------
@@ -63,7 +67,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     const [isLoading, setIsLoading] = useState(false);
     const [categeriesCount, setcategeriesCount] = useState(312)
     const [categorynumber, setCategorynumber] = useState([]);
-    const [categoryIndex, setcategoryIndex] = useState(1)
+    const [categoryIndex, setcategoryIndex] = useState(1);
+    
+
 
     const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?category=${categeriesCount}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`;
     // console.log(categorynumber,'categorynumber');
@@ -123,6 +129,19 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         console.log('fetchMoreValues 1......');
 
     }, []);
+
+
+   // opt success then  MOdal close automatically
+   const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+
+   
 
     const handleScroll = () => {
         if (!isLoading) {
@@ -408,24 +427,25 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
                     {/* // ---------------------------- modal view carts --------------------------- */}
 
-                    <div className="modal fade" id="MovieViewDirectDelivery" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div className="modal-dialog modal-fullscreen-sm-down">
+                    {mbViewDirect && (
+       
+       <div className="modal fadeshow" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
+                        <div className="modal-dialog modal-fullscreen-sm-down" role="document">
                             <div className="modal-content">
-                                <div className="modal-header d-flex gap-2">
-                                    <div className=''>
-                                        <span className='ms-3 p-1'>Delivery Details</span>
-                                    </div>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
                                 {/* ----------------- display  modal body -------- */}
-                                <div className="modal-body">
+                                <div className="modal-body d-flex  justify-content-center align-items-center">
                                     {/* ----------------- display  carts views-------- */}
 
-                                    {mbViewDirect === true ? <ConformationForm /> : <></>}
+                                     <ConformationForm   setMbViewDirect={setMbViewDirect}/> 
                                 </div>
                             </div>
                         </div>
                     </div>
+      )}   
+
+
+                    
+                    
                     {/* // ----------------------------- modal end view ---------------------------- */}
 
                     <div className='position-fixed add_message'>{alertOfAddCart === true ?  <SuccessMsg /> : <></>}</div>
@@ -440,7 +460,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                             </div>
                             {/* <div className='col-3 ps-1 text-end position-relative'>View<span className="position-absolute top-0 start-100 translate-middle badge rounded bg-white text-dark badge_footerMb">{cart.length}</span></div> */}
                             <div className='col-7 p-0 d-flex justify-content-end  align-items-center'>
-                                <button type="button" onClick={(() => setMbViewDirect(true))} className="btn footerCartrMb_OrdeBtn me-2 text-success" data-bs-toggle="modal" data-bs-target="#MovieViewDirectDelivery"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button>
+                                <button type="button" onClick={(() => setMbViewDirect(true))} className="btn footerCartrMb_OrdeBtn me-2 text-success"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button>
                             </div>
                         </div>
                     </div>

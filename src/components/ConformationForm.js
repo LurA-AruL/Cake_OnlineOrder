@@ -1,19 +1,26 @@
 import React ,{useState,useEffect}from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import OptForm from './OptForm';
+import axios from 'axios';
+import '../styles/conformation.css'
 
 
-export default function ConformationForm() {
+
+export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect}) {
 
     const [orderSend, setOrderSend] = useState([]);
     const [specialComments,setSpecialComments] = useState(false);
     
+
+    // optOption conditon 
+    
+    const [isOptOption,setIsoptOption] = useState(false);
     
     // ------------------- Model show and hide -------------------------
-    const [shows, setShows] = useState(false);
+    // const [shows, setShows] = useState(false);
 
-    const handleShows = () => setShows(true);
-    const handleCloses = () => setShows(false);
+    // const handleShows = () => setShows(true);
+    // const handleCloses = () => setShows(false);
     
 
     useEffect(() => {
@@ -84,20 +91,32 @@ export default function ConformationForm() {
         e.preventDefault();
 
         if (validateForm()) {
+             // Submit the form data or perform further actions
+             const sendData = Math.floor(100000 + Math.random() * 900000).toString();
 
-            // Submit the form data or perform further actions
-            const sendData = Math.floor(100000 + Math.random() * 900000).toString();
-            console.log(sendData)
+             console.log(sendData,'otp');
+
+            const message = `
+Your verification OTP is ${sendData}.
+It will expire in the next 60 seconds
+ - Powered by DIGITAL FACTORY`;
+
            
+           console.log(message,'message');
+            // console.log(message,'message')
             setTimeout(() => {
             updateCart('');   
-            }, 5000);
+            }, 20000);
 
             updateCart(sendData);
 
-            console.log("Form is valid and can be submitted.");
+            setIsoptOption(true);
 
-            handleShows();
+            handlePostRequest(message);
+
+            console.log("Form is valid and can be submitted.",orderSend);
+
+            // handleShows();
 
             // window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
             // window.open(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${sendData}&instance_id=65263295BD8BC&access_token=652631278d3af`);
@@ -106,6 +125,21 @@ export default function ConformationForm() {
         }
 
     };
+
+    const handlePostRequest = async (message) => {
+        try {
+            const phone = '91'+formData.phoneNumber;
+            console.log(phone)
+          const response = await axios.get(`https://x2.woonotif.com/api/send.php?number=91${formData.phoneNumber}&type=text&message=${message}&instance_id=65263295BD8BC&access_token=652631278d3af`);
+    
+          // Handle the response
+          console.log('Response:', response.data);
+        //   ✅
+        } catch (error) {
+          // Handle errors
+          console.error('Error:', error);
+        }
+      };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -121,16 +155,16 @@ export default function ConformationForm() {
     
 
   return (
-    <div className="container Delivery_OuterWrapper  ">
-        {/* ----------------------------- otp form area--------------------------------*/}
+    <div className="container Delivery_OuterWrapper">
 
-        <Modal show={shows} onHide={handleCloses}>
-            <OptForm  orderSend={orderSend}/>
-      </Modal>
+        {isOptOption === true  ? 
 
-       
+        <div className=''>
+             <OptForm  orderSend={orderSend}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber}/> 
+        </div>
+        
+        :
 
-        {/* ----------------------------- Conformation form  -------------------------- */}
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
         <div className="form-group">
             <label htmlFor="name" className="font_Headers">Name:</label>
@@ -166,6 +200,7 @@ export default function ConformationForm() {
             <div className="w-75 text-end p-2"><button type="submit" className="btn border whatsappBtn "><i className="bi bi-whatsapp px-2 text-success"></i>Place an Order</button></div>
         </div> */}
     </form>
+    }
 </div>
   )
 }
