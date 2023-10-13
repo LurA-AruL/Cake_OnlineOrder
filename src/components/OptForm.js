@@ -42,7 +42,10 @@ export default function OptForm({orderSend,setMbViewDirect,customerPhNo}) {
     <div className='w-100 shadow'>
         <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column" noValidate>
                 <div className="mb-3">
-                <label htmlFor="sixDigitInput" className="form-label fw-bold">Enter OTP sent to '{customerPhNo}'</label>
+                  <div className='d-flex justify-content-between mb-3'>
+                  <label htmlFor="sixDigitInput" className="form-label fw-bold">Enter OTP sent to '{customerPhNo}'</label>
+                <label onClick={() => setMbViewDirect(false)} className='fw-bold fs-6 cursor_pointer'>X</label>
+                  </div>
                 <input
                     type="text"
                     id="sixDigitInput"

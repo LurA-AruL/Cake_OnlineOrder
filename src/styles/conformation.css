@@ -1,6 +1,9 @@
 .otpOuterWrapper{
     /* background-color: rgba(0, 0, 0, 0.449); */
 }
+.cursor_pointer{
+    cursor: pointer;
+}
 .CustorName,.Custorphone{
     font-size: 12pt;
     font-weight: 600;

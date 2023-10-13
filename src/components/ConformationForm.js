@@ -106,7 +106,7 @@ It will expire in the next 60 seconds
             // console.log(message,'message')
             setTimeout(() => {
             updateCart('');   
-            }, 20000);
+            }, 60000);
 
             updateCart(sendData);
 
