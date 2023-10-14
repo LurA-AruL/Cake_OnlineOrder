@@ -55,7 +55,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     const [listCategories, setListCategories] = useState([])
     // const [changeApiCount, SetChangeApiCount] = useState(312);
 
-   
+   // device Token =----------------
+   const [deviceToken,setDeviceToken] = useState();
+   const [CheckToken,setCheckToken] = useState()
 
     
 
@@ -182,7 +184,15 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         // -------------- categories api functions ----------------- 
         fetchListCategories();
         //--------------------------------------------------------------------------------------
+        localStorage.setItem('DeviceToken', JSON.stringify(''));
     }, [Cartdetails, itemsSearchValue]);
+
+
+    useEffect(() => {
+         // get device token
+         const deviceToken = JSON.parse(localStorage.getItem('DeviceToken')) || [];
+         setCheckToken(deviceToken);
+    },[])
 
     // ---------------------------------- all categories items ------------------------
         const AllCategoryFun = (events) => {
@@ -276,6 +286,37 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
     // console.log(apiData.map(e => e),"asdjbhgdgvsdiomoldsbhgu");
+
+    function generateRandomToken(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let token = '';
+        for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        token += characters.charAt(randomIndex);
+        }
+        return token;
+       }
+
+    const DeviceTokeFun = (token) => {
+
+        
+        // Update the cart in component state
+        setDeviceToken(token);
+        // Update the cart in localStorage
+        localStorage.setItem('DeviceToken', JSON.stringify(token));
+        
+        // cart value increase
+        };
+
+    const handleRandomDevice = () => {
+        console.log(deviceToken === undefined);
+
+        if(deviceToken === undefined){
+            const generateRandom = generateRandomToken(30);
+            DeviceTokeFun(generateRandom);
+        }
+        setMbViewDirect(true);
+    }
 
 
     return (
@@ -437,7 +478,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                 <div className="modal-body d-flex  justify-content-center align-items-center">
                                     {/* ----------------- display  carts views-------- */}
 
-                                     <ConformationForm   setMbViewDirect={setMbViewDirect}/> 
+                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken}/> 
                                 </div>
                             </div>
                         </div>
@@ -461,7 +502,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                             </div>
                             {/* <div className='col-3 ps-1 text-end position-relative'>View<span className="position-absolute top-0 start-100 translate-middle badge rounded bg-white text-dark badge_footerMb">{cart.length}</span></div> */}
                             <div className='col-7 p-0 d-flex justify-content-end  align-items-center'>
-                                <button type="button" onClick={(() => setMbViewDirect(true))} className="btn footerCartrMb_OrdeBtn me-2 text-success"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button>
+                                <button type="button" onClick={handleRandomDevice} className="btn footerCartrMb_OrdeBtn me-2 text-success"><i className="bi bi-whatsapp pe-1 whatsAppICon" ></i>Order on Whatsapp <i class="bi bi-arrow-right-circle-fill"></i></button>
                             </div>
                         </div>
                     </div>

@@ -38,7 +38,6 @@ export default function Home({inputRef,cartItems}) {
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-  
 
   useEffect(() => {
     // Load the cart from localStorage when the component mounts
@@ -147,7 +146,7 @@ const updateCart = (updatedCart) => {
 
     }, 1500);
   };
-
+   
   // ---------------------------------- Aside Carts items Removing function here --------------------------------   
 
   const removeFromCart = (item) => {

@@ -16,3 +16,16 @@
     font-size: 10pt !important;
     border: 0 !important;
 }
+.customer_number{
+    color: var(--text-color);
+}
+.resend_otp{
+    color: var(--text-color);
+}
+.otp_submit{
+    background-color: var(--main-bg-color) !important;
+    color: white !important;
+    letter-spacing: 2px;
+    font-weight: 500 !important;
+    
+}
