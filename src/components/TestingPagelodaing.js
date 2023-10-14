@@ -279,6 +279,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
     return (
+        <>
         <div className=' w-100 position-relative '>
             {/* ------------------------------------- The Avaible items Filters Buttom components here---------------------  */}
                 <div className='slider-container py-2 categorie position-sticky top-0 bg-white z-index_5' >
@@ -405,7 +406,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                         )) :
                                         <div className='text-center w-100'>
                                             <img src="assests/emptyCart_moblieView.png" className='w-75 front_corsur ' alt='no image found' />
-                                            <p>Your Carts is empty</p>
+                                            <p>Your Cart is empty</p>
                                             <p>Looks like you haven't added any items to your cart yet.</p>
                                             <button className='btn border px-4 rounded-pill bg-success text-white py-2 fs-6'>ADD ITEMS TO CART</button>
                                         </div>
@@ -448,7 +449,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     
                     {/* // ----------------------------- modal end view ---------------------------- */}
 
-                    <div className='position-fixed add_message'>{alertOfAddCart === true ?  <SuccessMsg /> : <></>}</div>
+                    
                     {/* -------------------- onclick condition show or hide ---------------- */}
                     
                     {cart.length === 0 ? <></> :
@@ -465,7 +466,12 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                         </div>
                     </div>
                     }
+                    
         </div>
+        <div className='w-100 position-fixed text-center add_message'>
+                        <div className='d-flex justify-content-center add_message_inner'>{alertOfAddCart === true ?  <SuccessMsg /> : <></>}</div>
+        </div>
+        </>
     );
 }
 

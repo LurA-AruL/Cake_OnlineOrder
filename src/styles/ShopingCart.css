@@ -93,11 +93,8 @@
 
   /* ----------------toggle handle on click add----------------- */
   .add_message{
-    width: 50% !important;
-    left: 25%;
-    bottom: 120px;
-    /* z-index: 3; */
-    /* transition:  0s, 0.5s linear; */
+    left: 0%;
+    bottom: 60px;
   }
 @media only screen  and (max-width:992px) and (min-width:0) {
 /* ------------------- Heart Icons ---------------- */
@@ -230,5 +227,10 @@
   }
   .bi-arrow-right-circle-fill{
 padding-left: 2px;
+  }
+  .add_message{
+    left: 0%;
+    bottom: 130px;
+    
   }
 }

@@ -145,7 +145,7 @@ const updateCart = (updatedCart) => {
 
       setAlertOfAddCart(false);
 
-    }, 1000);
+    }, 1500);
   };
 
   // ---------------------------------- Aside Carts items Removing function here --------------------------------   

@@ -113,7 +113,7 @@ export default function Cart({cartreciveFun}) {
       <div className='w-100'>
         <div className='w-50 m-auto text-center' >
             <img src="assests/emptyCart_moblieView.png" className='w-50  m-auto front_corsur ' alt='no image found' />
-            <p>Your Carts is empty!</p>
+            <p>Your Cart is empty!</p>
             <p>Looks like you haven't added any items to your cart yet.</p>
             <button className='btn border px-4 rounded-pill bg-success text-white py-2 fs-6'>ADD items TO CART</button>
         </div>

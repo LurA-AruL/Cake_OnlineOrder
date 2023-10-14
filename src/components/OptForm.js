@@ -67,7 +67,7 @@ export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderite
     }
   return (
     
-    <div className='w-100 shadow'>
+    <div className='w-100 shadow rounded-3'>
         <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column" noValidate autoComplete='off'>
                 <div className="mb-3">
                   <div className='d-flex justify-content-between mb-3'>
@@ -89,7 +89,7 @@ export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderite
                      Please enter a valid 6-digit code.
                 </div>
                 )}
-                {timers ? <div className='text-dark fw-bold pt-2 cursor_pointer' onClick={reGenerateOtp}> RESEND OTP <span className='fw-normal ps-2'>in 0:0s</span> </div>: <div className='text-dark fw-bold pt-2'>RESEND OTP <span className='fw-normal ps-2'>in 0:{seconds}s</span></div>}
+                {timers ? <div className='text-dark fw-bold pt-2 cursor_pointer' onClick={reGenerateOtp}> RESEND OTP <span className='fw-normal ps-2'>in 0:0s</span> </div>: <div className='text-secondary fw-bold pt-2'>RESEND OTP <span className='fw-normal ps-2'>in 0:{seconds}s</span></div>}
                 
                 </div>
                 <button type="submit" className="btn btn-primary">CONTINUE</button>

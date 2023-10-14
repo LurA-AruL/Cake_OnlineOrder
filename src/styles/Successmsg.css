@@ -1,0 +1,11 @@
+@media only screen  and (max-width:992px) and (min-width:0) {
+    .Successfully_message{
+        width: 150px;
+        margin: auto;
+    }
+    .toastWrapper{
+        background-color: transparent !important;
+        border: none;
+        box-shadow: none;
+    }
+}
