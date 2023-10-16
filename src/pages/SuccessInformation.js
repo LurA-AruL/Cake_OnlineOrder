@@ -66,9 +66,9 @@ export default function SuccessInformation() {
             <h6 className='textHeading'>Contact Name: <span   className='fw-normal'>John.</span></h6>
             <h6 className='textHeading'>Contact Number: <span className='fw-normal'>7094030845.</span></h6>
          </div>
-         <div className='col-6'>
+         <div className=''>
            <h6 className='textHeading'>Delivery Information:</h6>
-           <h6 className='textHeading'>Type: Delivery</h6>
+           <h6 className='textHeading '>Type: Delivery</h6>
            <p>Address: First Floor, 95 – D Needarajappaiyar Street, Pondicherry – 605001.</p>
          </div>
       </div>
