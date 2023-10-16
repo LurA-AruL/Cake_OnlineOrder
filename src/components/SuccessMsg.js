@@ -6,7 +6,7 @@ import Toast from 'react-bootstrap/Toast';
 import '../styles/Successmsg.css'
 
 
-function SuccessMsg() {
+function SuccessMsg({successMessage}) {
   const [show, setShow] = useState(true);
 
   return (
@@ -22,7 +22,7 @@ function SuccessMsg() {
             <strong className="me-auto">Bootstrap</strong>
             <small>11 mins ago</small>
           </Toast.Header> */}
-          <Toast.Body className='bg-success Successfully_message rounded text-center text-white'>Successfully Added.</Toast.Body>
+          <Toast.Body className='bg-success Successfully_message rounded text-center text-white'>{successMessage}</Toast.Body>
           {/* <div class="cracker"></div> */}
         </Toast>
       </Col>

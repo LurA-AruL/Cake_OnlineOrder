@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import WishList from './pages/WishLIst';
 import Portfolio from './pages/Portfolio';
+import SuccessInformation from './pages/SuccessInformation';
 // import ReactsSideOfCan from './components/ReactsSideOfCan';
 
 
@@ -109,6 +110,7 @@ const cartItems = (cardItemValue) => {
         <Route path='/Cart' element={<Cart cartreciveFun={cartItems} />} />
         <Route path='/WishList' element={<WishList />} />
         <Route path='/Portfolio' element={<Portfolio />} />
+        <Route path='/SuccessInformation' element={<SuccessInformation />} />
       </Routes>
       </Router>
       </div>

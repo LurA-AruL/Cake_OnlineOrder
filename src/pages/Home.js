@@ -36,6 +36,11 @@ export default function Home({inputRef,cartItems}) {
     // ------------------- Model show and hide -------------------------
     const [show, setShow] = useState(false);
 
+
+    //  otpm submit then carts value none call state
+
+    const [cartEmptyAfterOtpSub,setCartEmptyAfterOtpSub] = useState(false)
+
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
@@ -45,7 +50,7 @@ export default function Home({inputRef,cartItems}) {
     setCart(storedCart);
      //  ------------------------------Api get Method---------------------
      fetchData();
-  }, []);
+  }, [cartEmptyAfterOtpSub]);
 
     //  ---------------------------------- Fetch Api Axois Methods -------------------------
 
@@ -212,7 +217,7 @@ const updateCart = (updatedCart) => {
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
             
-            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} />
+            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} updateCart={setCartEmptyAfterOtpSub}/>
             {/* <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/> */}
           </div>
 

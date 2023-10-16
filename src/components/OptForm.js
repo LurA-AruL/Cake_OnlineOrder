@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SuccessMsg from './SuccessMsg';
 import axios from 'axios';
 
 
-export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderitemsSendChild,handleSubmit,deviceToken,verifyOrder_id}) {
+export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderitemsSendChild,handleSubmit,deviceToken,verifyOrder_id,setCart}) {
+  const success = 'success';
 
     const [OptformData, setOptFormData] = useState('');
 
@@ -12,6 +14,8 @@ export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderite
     const [timers,setTimers] = useState(false)
 
     const navigate = useNavigate();
+
+    const [successAlt,setSuccessAlt] = useState(false)
 
     const [errors, setErrors] = useState(false);
 
@@ -50,7 +54,6 @@ export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderite
                 // alert(orderitemsSendChild);
                 handlePostRequest();
                 // window.open(`https://api.whatsapp.com/send/?phone=+91${formData.phoneNumber}&text=${sendData}&type=phone_number&app_absent=0`, '_blank');
-                // navigate('/Cart');
                 setOptFormData('');
                 // setMbViewDirect(false);
     
@@ -79,7 +82,15 @@ const data = {
     console.log(response.status)
 if(response.status === 'success');
 {
-  alert('success');
+  localStorage.setItem('DeviceToken', JSON.stringify(''));
+  localStorage.setItem('cart', JSON.stringify('')); 
+  // console.log(setCartEmpty,'setcartempty..........');
+  setTimeout(() => {
+  navigate('/SuccessInformation');
+  setSuccessAlt(false);
+  }, 2000);
+  setCart(true);
+  setSuccessAlt(true);
 }
 
   this.setState({ response: response.data });
@@ -110,7 +121,8 @@ if(response.status === 'success');
       setErrors(false);
     }
   return (
-    
+    <>
+    {successAlt === true ?<div className='text-center text-success fw-bold'> <img src='assests/orderSucess.gif' className='w-100' alt='no image' /> <h6>Order Placed SuccessFully</h6></div> :
     <div className='w-100 shadow rounded'>
         <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column" noValidate autoComplete='off'>
                 <div className="mb-3">
@@ -139,5 +151,10 @@ if(response.status === 'success');
                 <button type="submit" className="btn otp_submit">CONTINUE</button>
             </form>
     </div>
+    }
+    {/* <div className='w-100 position-fixed text-center add_message'> */}
+      {/*   <div className='d-flex justify-content-center add_message_inner'> <img src='assests/orderDone.gif' className='w-100' alt='no image' /> </div> */}
+     {/* </div> */}
+</>
   )
 }

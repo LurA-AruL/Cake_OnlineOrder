@@ -6,7 +6,7 @@ import '../styles/conformation.css'
 
 
 
-export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect,deviceToken}) {
+export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect,deviceToken,setCart}) {
 
     const [OtpNumber, setOtpNumber] = useState([]);
     const [orderSend, setOrderSend] = useState([]);
@@ -259,7 +259,7 @@ It will expire in the next 60 seconds
         {isOptOption === true  ? 
 
         <div className=''>
-             <OptForm  OtpNumber={OtpNumber}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber} orderitemsSendChild={orderitemsSendChild} handleSubmit={otpGenerateFun} deviceToken={deviceToken} verifyOrder_id={verifyOrder_id}/> 
+             <OptForm  OtpNumber={OtpNumber}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber} orderitemsSendChild={orderitemsSendChild} handleSubmit={otpGenerateFun} deviceToken={deviceToken} verifyOrder_id={verifyOrder_id} setCart={setCart}/> 
         </div>
         
         :

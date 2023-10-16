@@ -18,7 +18,9 @@ import SuccessMsg from './SuccessMsg';
 import ConformationForm from './ConformationForm';
 
 
-function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart }) {
+function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart ,updateCart}) {
+
+    const successMessage = 'Successfully Added.';
 
     const [cart, setCart] = useState(Cartdetails);
      //--------------------------------- Axois Api key  -----------------------
@@ -76,7 +78,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?category=${categeriesCount}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`;
     // console.log(categorynumber,'categorynumber');
     
-    const handleViewCart = cart.length+1;
+    // const handleViewCart = cart.length+1;
     const fetchMoreValues = async () => {
         setIsLoading(true);
         
@@ -185,7 +187,8 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         fetchListCategories();
         //--------------------------------------------------------------------------------------
         localStorage.setItem('DeviceToken', JSON.stringify(''));
-    }, [Cartdetails, itemsSearchValue]);
+        
+    }, [Cartdetails, itemsSearchValue,updateCart]);
 
 
     useEffect(() => {
@@ -309,7 +312,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         };
 
     const handleRandomDevice = () => {
-        console.log(deviceToken === undefined);
+        console.log(deviceToken ,'hello');
+        console.log(deviceToken === undefined ,'hello');
+        console.log(deviceToken === null ,'hello');
 
         if(deviceToken === undefined){
             const generateRandom = generateRandomToken(30);
@@ -478,7 +483,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                 <div className="modal-body d-flex  justify-content-center align-items-center">
                                     {/* ----------------- display  carts views-------- */}
 
-                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken}/> 
+                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} setCart={updateCart}/> 
                                 </div>
                             </div>
                         </div>
@@ -510,7 +515,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     
         </div>
         <div className='w-100 position-fixed text-center add_message'>
-                        <div className='d-flex justify-content-center add_message_inner'>{alertOfAddCart === true ?  <SuccessMsg /> : <></>}</div>
+                        <div className='d-flex justify-content-center add_message_inner'>{alertOfAddCart === true ?  <SuccessMsg  successMessage={successMessage}/> : <></>}</div>
         </div>
         </>
     );
