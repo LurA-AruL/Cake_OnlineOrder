@@ -4,7 +4,7 @@ import SuccessMsg from './SuccessMsg';
 import axios from 'axios';
 
 
-export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderitemsSendChild,handleSubmit,deviceToken,verifyOrder_id,setCart}) {
+export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderitemsSendChild,handleSubmit,deviceToken,verifyOrder_id,CartEmptyAfterOtpSub}) {
   const success = 'success';
 
     const [OptformData, setOptFormData] = useState('');
@@ -79,8 +79,9 @@ const data = {
   // Make a POST request using Axios
   axios.post('https://digitalfactory.co.in/dfi/api/otp', data)
   .then(response => {
-    console.log(response.status)
-if(response.status === 'success');
+    console.log(response)
+console.log(response.data.status === 'success')
+if(response.data.status === 'success')
 {
   localStorage.setItem('DeviceToken', JSON.stringify(''));
   localStorage.setItem('cart', JSON.stringify('')); 
@@ -89,7 +90,7 @@ if(response.status === 'success');
   navigate('/SuccessInformation');
   setSuccessAlt(false);
   }, 2000);
-  setCart(true);
+  CartEmptyAfterOtpSub(true);
   setSuccessAlt(true);
 }
 
@@ -123,12 +124,12 @@ if(response.status === 'success');
   return (
     <>
     {successAlt === true ?<div className='text-center text-success fw-bold'> <img src='assests/orderSucess.gif' className='w-100' alt='no image' /> <h6>Order Placed SuccessFully</h6></div> :
-    <div className='w-100 shadow rounded'>
+    <div className='w-100 shadow rounded p-lg-5'>
         <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column" noValidate autoComplete='off'>
                 <div className="mb-3">
                   <div className='d-flex justify-content-between mb-3'>
                   <label htmlFor="sixDigitInput" className="form-label fw-bold">Enter OTP sent to '<span className='customer_number'>{customerPhNo}</span>'</label>
-                <label onClick={() => setMbViewDirect(false)} className='fw-bold fs-6 cursor_pointer'>X</label>
+                <label onClick={() => setMbViewDirect(false)} className='fw-bold fs-6 cursor_pointer d-lg-none'>X</label>
                   </div>
                 <input
                     type="text"

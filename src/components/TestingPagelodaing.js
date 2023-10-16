@@ -18,7 +18,7 @@ import SuccessMsg from './SuccessMsg';
 import ConformationForm from './ConformationForm';
 
 
-function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart ,updateCart}) {
+function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart ,CartEmptyAfterOtpSub}) {
 
     const successMessage = 'Successfully Added.';
 
@@ -75,7 +75,8 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     
 
 
-    const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?category=${categeriesCount}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`;
+    // const apiUrl = `https://zukachocolates.com/wp-json/wc/v3/products?category=${categeriesCount}&consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=${page}&per_page=${per_page}`;
+    const apiUrl = `https://digitalfactory.co.in/dfi/api/products?get_products=0`;
     // console.log(categorynumber,'categorynumber');
     
     // const handleViewCart = cart.length+1;
@@ -85,6 +86,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
+            console.log(data.products,'data.............................');
             
             setIsLoading(true);
             setIsLoadingPage(false);
@@ -108,16 +110,20 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     setcategeriesCount(x);
                 }
             }
+
             // Check for duplicate elements before updating state
-                    setApiData(prevValues => {
-                const uniqueData = [...prevValues, ...data].filter(
-                    (value, index, self) => self.findIndex(v => v.id === value.id) === index
-                );
+            //         setApiData(prevValues => {
+            //     const uniqueData = [...prevValues, ...data].filter(
+            //         (value, index, self) => self.findIndex(v => v.id === value.id) === index
+            //     );
                 
-                //   const list = listCategories.map(e => e.id);
-                //   list
-                return uniqueData;
-            });
+            //     //   const list = listCategories.map(e => e.id);
+            //     //   list
+            //     return uniqueData;
+            // });
+
+            setApiData(data.products)
+            
 
             setStorage(apiData);
         } catch (error) {
@@ -130,8 +136,6 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
     useEffect(() => {
         fetchMoreValues();
-        console.log('fetchMoreValues 1......');
-
     }, []);
 
 
@@ -188,7 +192,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         //--------------------------------------------------------------------------------------
         localStorage.setItem('DeviceToken', JSON.stringify(''));
         
-    }, [Cartdetails, itemsSearchValue,updateCart]);
+    }, [Cartdetails, itemsSearchValue,CartEmptyAfterOtpSub]);
 
 
     useEffect(() => {
@@ -233,10 +237,15 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
     // -------------------------list of categories function---------------------
     const fetchListCategories = async () => {
         try {
-            const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products/categories?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
-            setListCategories(response.data.filter(e => e.count !== 0));
+            // const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products/categories?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
+            const response = await axios.get(`https://digitalfactory.co.in/dfi/api/products?get_product_cat=0`);
+            console.log(response.data.article_cat_details,'resposen..................................');
+            setListCategories(response.data.article_cat_details.map(e => e.prod_category_name));
+            // setListCategories(response.data.filter(e => e.count !== 0));
             //   console.log(response.data.filter(e => e.count !== 0).map(e => e.id),'Categories list');
-            setCategorynumber(response.data.filter(e => e.count !== 0).map(e => e.id));
+            setCategorynumber(response.data.article_cat_details.filter(e =>e.prod_category_status === '1'));
+            // console.log(response.data.article_cat_details.filter(e => e.prod_category_status === '1'),'..........check');
+            // setCategorynumber(response.data.filter(e => e.count !== 0).map(e => e.id));
             setIsLoadingPage(false);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -334,7 +343,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     <button type='button' className={`btn slider-item btn_menu border px-2 px-sm-4 ${allBtnActive  ? 'Btn_active' : ''} `} onClick={(ee) => AllCategoryFun()}>All</button>
                     {listCategories.map((e,index) => (
                         <div className='slider-item' key={index}>
-                            <button type='button' className={`btn w-100 btn_menu border px-2 px-sm-4 ${allBtnActive ? '' : activeCategory === e ? 'Btn_active' : ''} `} onClick={(ee) => handleCategries(e.id, e)}>{e.name}</button>
+                            <button type='button' className={`btn w-100 btn_menu border px-2 px-sm-4 ${allBtnActive ? '' : activeCategory === e ? 'Btn_active' : ''} `} onClick={(ee) => handleCategries(e.id, e)}>{e}</button>
                     </div>
                     ))}</>}
                 </div>
@@ -363,28 +372,29 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
 
                         apiData.map((currentData, index) => (
-                            <div className="card col-1 my-lg-1 border-0 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.id}>
+                            <div className="card col-1 my-lg-1 border-0 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.product_id}>
                                 <div className='ImageWrapper'>
                                     <div className='ImageInner'>
                                         {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
-                                        <img src={currentData.images.length > 1 ? currentData.images[0].src : currentData.images.map(e => e.src)} className="card-img-top cart_imgae" alt="no image found" />
+                                        <img src={currentData.produt_image_url} className="card-img-top cart_imgae" alt="no image found" />
+                                        {/* <img src={currentData.images.length > 1 ? currentData.images[0].src : currentData.images.map(e => e.src)} className="card-img-top cart_imgae" alt="no image found" /> */}
                                     </div>
                                 </div>
                                 <div className="card-body px-0 d-flex flex-column justify-content-center d-lg-bolck">
                                     <div className='d-flex justify-content-between'>
                                         <div className='d-flex flex-column  px-2'>
-                                            <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.name}</h5>
-                                            <span className='CartPriceHome pt-1 fw-bold'>{currentData.price ? "Price: " + currentData.price : <></>}</span>
-                                            <span className='CartPriceHome text-decoration-line-through'>{currentData.regular_price && currentData.regular_price !== currentData.price ? "Regular Price: " + currentData.regular_price : <></>}</span>
+                                            <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.product_name.slice(0,40)}...</h5>
+                                            <span className='CartPriceHome pt-1 fw-bold'>{currentData.product_sale_price ? "Price: " + currentData.product_sale_price : <></>}</span>
+                                            <span className='CartPriceHome text-decoration-line-through'>{currentData.product_regular_price && currentData.product_regular_price !== currentData.product_sale_price ? "Regular Price: " + currentData.product_regular_price : <></>}</span>
                                             {/* <div className='pt-2 fst-italic fw-light'>{currentData.short_description.slice(' ').slice(3,42)}...</div> */}
                                         </div>
-                                        <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e, BtnIndex) => addToCart({ item_id: currentData.id, item_name: currentData.name, item_price: currentData.price, item_qty: currentData.qty, item_image: currentData.images.map(e => e.src) })}>{buttonText}</button></div></div>
+                                        <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e, BtnIndex) => addToCart({ item_id: currentData.product_id, item_name: currentData.product_name, item_price: currentData.product_sale_price, item_qty: currentData.product_status, item_image: currentData.produt_image_url })}>{buttonText}</button></div></div>
 
                                     <div className='position-absolute top-100 start-50 translate-middle'>
 
                                         {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
                                     </div>
-                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.short_description.slice(0, 50)+'...' }} />
+                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.product_description.slice(0, 50)+'...' }} />
                                 </div>
                             </div>
                         )
@@ -483,7 +493,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                                 <div className="modal-body d-flex  justify-content-center align-items-center">
                                     {/* ----------------- display  carts views-------- */}
 
-                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} setCart={updateCart}/> 
+                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} CartEmptyAfterOtpSub={CartEmptyAfterOtpSub}/> 
                                 </div>
                             </div>
                         </div>

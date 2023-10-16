@@ -6,7 +6,7 @@ import '../styles/conformation.css'
 
 
 
-export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect,deviceToken,setCart}) {
+export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbViewDirect,deviceToken,CartEmptyAfterOtpSub}) {
 
     const [OtpNumber, setOtpNumber] = useState([]);
     const [orderSend, setOrderSend] = useState([]);
@@ -82,26 +82,24 @@ export default function ConformationForm({setoptSucessThenAutoCloseModal,setMbVi
         const newErrors = {};
 
         // // Simple validation for name (required)
-        // if (!name) {
-        //     newErrors.name = "Name is required";
-        // } else if (name.length < minLength || name.length > maxLength) {
-        //     newErrors.name = "min 3 & max 40 letters";
-        // } else if (!validCharsRegex.test(name)) {
-        //     newErrors.name = "Name is only letters";
-        // }
-
-
+        if (!name) {
+            newErrors.name = "Name is required";
+        } else if (name.length < minLength || name.length > maxLength) {
+            newErrors.name = "min 3 & max 40 letters";
+        } else if (!validCharsRegex.test(name)) {
+            newErrors.name = "Name is only letters";
+        }
 
         // Simple validation for phone number (required, numeric)
-        // if (!phoneNumber) {
-        //     newErrors.phoneNumber = "Phone Number is required";
-        // } else if (!/^\d+$/.test(phoneNumber)) {
-        //     newErrors.phoneNumber = "Phone Number must contain only numbers";
-        // } else if (phoneNumber.length !== 10) {
-        //     newErrors.phoneNumber = "Phone Number must be 10 numbers";
-        // } else if (!/^[6-9]\d{9}$/.test(phoneNumber)){
-        //     newErrors.phoneNumber = "Invalid Phone Number";
-        // }
+        if (!phoneNumber) {
+            newErrors.phoneNumber = "Phone Number is required";
+        } else if (!/^\d+$/.test(phoneNumber)) {
+            newErrors.phoneNumber = "Phone Number must contain only numbers";
+        } else if (phoneNumber.length !== 10) {
+            newErrors.phoneNumber = "Phone Number must be 10 numbers";
+        } else if (!/^[6-9]\d{9}$/.test(phoneNumber)){
+            newErrors.phoneNumber = "Invalid Phone Number";
+        }
        
         // Simple validation for comments (required)
 
@@ -259,15 +257,15 @@ It will expire in the next 60 seconds
         {isOptOption === true  ? 
 
         <div className=''>
-             <OptForm  OtpNumber={OtpNumber}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber} orderitemsSendChild={orderitemsSendChild} handleSubmit={otpGenerateFun} deviceToken={deviceToken} verifyOrder_id={verifyOrder_id} setCart={setCart}/> 
+             <OptForm  OtpNumber={OtpNumber}  setMbViewDirect={setMbViewDirect} customerPhNo={formData.phoneNumber} orderitemsSendChild={orderitemsSendChild} handleSubmit={otpGenerateFun} deviceToken={deviceToken} verifyOrder_id={verifyOrder_id} CartEmptyAfterOtpSub={CartEmptyAfterOtpSub}/> 
         </div>
         
         :
 
         <div className=''>
             <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 pt-3 position-relative m-0">
-            <div className='d-flex justify-content-between mb-3 border-bottom'>
-                  <label htmlFor="sixDigitInput" className="form-label fw-bold">Your Order details</label>
+            <div className='d-flex justify-content-between mb-3 border-bottom d-lg-none'>
+                  <label htmlFor="sixDigitInput" className="form-label fw-bold ">Your Order details</label>
                 <label onClick={() => setMbViewDirect(false)} className='fw-bold fs-6 cursor_pointer'>X</label>
             </div>
         <div className="form-group">

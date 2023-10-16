@@ -7,6 +7,7 @@ import TestingPagelodaing from '../components/TestingPagelodaing'
 import { Button, Modal } from 'react-bootstrap';
 import SearchItems from '../components/SearchItems';
 import { Link, useNavigate } from 'react-router-dom';
+import ConformationForm from '../components/ConformationForm';
 
 export default function Home({inputRef,cartItems}) {
 
@@ -36,12 +37,20 @@ export default function Home({inputRef,cartItems}) {
     // ------------------- Model show and hide -------------------------
     const [show, setShow] = useState(false);
 
+     // device Token =----------------
+   const [deviceToken,setDeviceToken] = useState();
+
 
     //  otpm submit then carts value none call state
 
     const [cartEmptyAfterOtpSub,setCartEmptyAfterOtpSub] = useState(false)
 
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+      setShow(true);
+      
+    };
+
+
     const handleClose = () => setShow(false);
 
   useEffect(() => {
@@ -217,7 +226,7 @@ const updateCart = (updatedCart) => {
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
             
-            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} updateCart={setCartEmptyAfterOtpSub}/>
+            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub}/>
             {/* <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/> */}
           </div>
 
@@ -227,10 +236,11 @@ const updateCart = (updatedCart) => {
 
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Order Details</h1>
+        <h1 className="modal-title fs-5 fw-bold" id="staticBackdropLabel">Your Order details</h1>
         </Modal.Header>
         <Modal.Body>
-                <Delivery  handleClose={handleClose}/>
+                {/* <Delivery  handleClose={handleClose}/> */}
+                <ConformationForm    setCart={updateCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub}/> 
         </Modal.Body>
       </Modal>
         
@@ -265,12 +275,12 @@ const updateCart = (updatedCart) => {
                     <div className="card border-0 mb-1" style={{ maxWidth: 300 + "px" }} key={index}>
                       <div className="row px-3">
                         <div className="col-md-4 rounded py-2">
-                          <img src={e.item_image[0]} className="img-fluid rounded" alt="no image found" />
+                          <img src={e.item_image} className="img-fluid rounded" alt="no image found" />
                         </div>
                         <div className="col-md-8">
                           <div className="card-body">
                             <div className=''>
-                              <h5 className="card-title asideCartHeader" >{e.item_name}</h5>
+                              <h5 className="card-title asideCartHeader" >{e.item_name.slice(0,35)}...</h5>
                               <div className="card-price SideCardprice d-flex"><i className="bi bi-currency-rupee "></i><span>
                                 {cart.map((item, index) => (
                                   <div key={index} className=''>

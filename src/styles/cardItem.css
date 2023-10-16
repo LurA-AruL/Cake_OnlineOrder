@@ -22,6 +22,9 @@
     opacity: 1;
 }
 
+.emptyCart_moblieView{
+    width: 50% !important;
+}
 
 @media only screen  and (max-width:992px) and (min-width:0) {
 .cartAreaItemsOuter{
@@ -43,5 +46,8 @@
 
 .totalText{
     font-size: 8pt;
+}
+.emptyCart_moblieView{
+    width: 100% !important;
 }
 }

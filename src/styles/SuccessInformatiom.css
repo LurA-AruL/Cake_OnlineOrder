@@ -1,0 +1,32 @@
+:root {
+  --heading-size: 12pt;
+  --heading-sub-text-size: 12pt ; 
+  --heading-size-mb: 10pt;
+  --heading-sub-text-size-mb: 10pt ;
+  }
+
+  .textHeading{
+    font-size: var(--heading-size) !important;
+    font-weight: 600;
+  }
+  .SuccessInformWrapper{
+    width: 50% !important;
+      }
+  .SuccessinformText{
+        font-size: 14pt !important;
+    }
+@media only screen  and (max-width:992px) and (min-width:0) {
+
+
+    .SuccessInformWrapper{
+        width: 100% !important;
+          }
+
+    .SuccessinformText{
+        font-size: 10pt !important;
+    }
+    .textHeading{
+      font-size: var(--heading-size-mb) !important;
+      font-weight: 600;
+    }
+}

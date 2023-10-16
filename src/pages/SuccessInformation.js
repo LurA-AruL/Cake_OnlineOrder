@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../styles/SuccessInformatiom.css';
 
 export default function SuccessInformation() {
   const orders = [
@@ -8,14 +9,29 @@ export default function SuccessInformation() {
   ];
   return (
     <>
-    <div className='w-100 px-3'>
-        <div className='fw-bold text-center mb-3 w-100 text-success'><div className='text-center w-50 m-auto'><img src='assests/orderSucess.gif' className='w-100' alt='no image' /></div><h6>Order Placed SuccessFully</h6></div>
-          <div>
-         <h6>Order Id: <span className='fw-normal'>123456</span></h6>
-         <h6>Order Date: <span className='fw-normal'>16/10/2023 & 10:05 Am</span></h6>
-            
-            <p> </p>
+    <div className='mx-auto px-3 SuccessInformWrapper'>
+        <div className='fw-bold text-center mb-3 w-100 text-success'>
+          <div className='text-center w-50 m-auto'><img src='assests/orderSucess.gif' className='w-100 ' alt='no image' /></div>
+          <h6 className='SuccessinformText'>Successfully Order Placed</h6></div>
+          <div className='d-lg-flex justify-content-between'>
+         <h6 className='textHeading'>Order Id: <span className='fw-normal'>123456</span></h6>
+         <h6 className='textHeading'>Order Date: <span className='fw-normal'>16/10/2023 & 10:05 Am</span></h6>
           </div>
+          <div>
+      <div className='d-lg-flex justify-content-between d-none d-lg-block'>
+         <div className='col-6'>
+           <h6 className='textHeading'>Delivery Information:</h6>
+           <h6 className='textHeading'>Type: Delivery</h6>
+           <p>Address: First Floor, 95 – D Needarajappaiyar Street, Pondicherry – 605001.</p>
+         </div>
+         <div className='mt-2 col-6 text-end'>
+            <h6 className='textHeading'>Contact Name: <span   className='fw-normal'>John.</span></h6>
+            <h6 className='textHeading'>Contact Number: <span className='fw-normal'>7094030845.</span></h6>
+         </div>
+      </div>
+    </div>
+          
+          
           <div className='w-100 mt-2'>
       <h5 className='fw-bold'>Order Details:</h5>
       <table className="table table-striped">
@@ -45,17 +61,17 @@ export default function SuccessInformation() {
         </tbody>
       </table>
     </div>
-    <div>
-      <div>
-        <h6>Delivery Information</h6>
-        <h6>Type: Delivery</h6>
-        <p>Address: First Floor, 95 – D Needarajappaiyar Street, Pondicherry – 605001.</p>
+    <div className='d-lg-none'>   
+         <div className='mt-2'>
+            <h6 className='textHeading'>Contact Name: <span   className='fw-normal'>John.</span></h6>
+            <h6 className='textHeading'>Contact Number: <span className='fw-normal'>7094030845.</span></h6>
+         </div>
+         <div className='col-6'>
+           <h6 className='textHeading'>Delivery Information:</h6>
+           <h6 className='textHeading'>Type: Delivery</h6>
+           <p>Address: First Floor, 95 – D Needarajappaiyar Street, Pondicherry – 605001.</p>
+         </div>
       </div>
-      <div className='mt-2'>
-         <h6>Contact Name: <span   className='fw-normal'>John.</span></h6>
-         <h6>Contact Number: <span className='fw-normal'>7094030845.</span></h6>
-      </div>
-    </div>
     </div>
     </>
   )
