@@ -37,11 +37,11 @@ export default function Delivery({Cartdetails,formattedAmount,handleClose,device
     <>
           <div >
               <ul className={`${otpConformOnHide ? 'd-none' : '' } nav nav-tabs`}>
-                  <li className="nav-item">
-                      <a className="nav-link d-flex justify-content-center align-items-center gap-2 actives" href="#" name='Pickup' onClick={((e) => SetDelivery(false))}><div className='pickupOption'><img src='assests/pickup.png' className='w-100' alt='no image found' /></div>Pickup</a>
+                  <li className="nav-item ">
+                      <span className="nav-link d-flex justify-content-center align-items-center gap-2 actives" name='Pickup' onClick={((e) => SetDelivery(false))}><div className='pickupOption'><img src='assests/pickup.png' className='w-100' alt='no image found' /></div>Pickup</span>
                   </li>
                   <li className="nav-item ms-3 position-relative d-flex">
-                      <a className="nav-link d-flex justify-content-center align-items-center text-dark"  href="#" name='Delivery' onClick={((e) => SetDelivery(true))}><div className='DeliveryOption'><img src='assests/demo1.png' className='w-100' alt='no image found' /></div>Delivery</a>
+                      <span className="nav-link d-flex justify-content-center align-items-center text-dark"  name='Delivery' onClick={((e) => SetDelivery(true))}><div className='DeliveryOption'><img src='assests/demo1.png' className='w-100' alt='no image found' /></div>Delivery</span>
                   </li>
               </ul>
 

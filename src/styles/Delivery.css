@@ -21,19 +21,22 @@
 
 /* ------------ nav link  */
 
-.nav-link:visited,.nav-link a:visited
+.nav-link{
+   color: rgb(36, 36, 34) !important;
+}
+.nav-link:visited,.nav-link span:visited
 {
    color: rgb(36, 36, 34) !important;
    outline: 2px;
 }
 
-.nav>li>a:focus,.actives{
+.nav>li>span:focus,.actives{
     text-decoration: white !important;
     color: var(--text-color) !important;
     background-color: #eee;
     border-bottom: 2px solid var(--text-color) !important;
 }
-.nav>li>a:hover{
+.nav>li>span:hover{
     background-color: #eee ;
 }
     /* --------------------------- form font headers------------------- */
