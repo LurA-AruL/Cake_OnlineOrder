@@ -218,7 +218,7 @@ const updateCart = (updatedCart) => {
       updatedCart[existingItemIndex].item_qty -= 1;
 
       if (updatedCart[existingItemIndex].item_qty === 0) {
-        sets('1');
+        
         updatedCart.splice(existingItemIndex, 1);
       }
 
@@ -286,8 +286,8 @@ const updateCart = (updatedCart) => {
         <h1 className="modal-title fs-5 fw-bold" id="staticBackdropLabel">Your Order details</h1>
         </Modal.Header>
         <Modal.Body>
-                {/* <Delivery  handleClose={handleClose}/> */}
-                <ConformationForm    setCart={updateCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub} deviceToken={deviceToken}/> 
+                <Delivery  handleClose={handleClose} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub} deviceToken={deviceToken}/>
+                {/* <ConformationForm    setCart={updateCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub} deviceToken={deviceToken}/>  */}
         </Modal.Body>
       </Modal>
         

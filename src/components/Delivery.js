@@ -6,9 +6,10 @@ import * as Yup from 'yup';
 import DeliveryDetails from './DeliveryDetails';
 import PickupDelivery from './PickupDelivery';
 
-export default function Delivery({Cartdetails,formattedAmount,handleClose}) {
+export default function Delivery({Cartdetails,formattedAmount,handleClose,deviceToken,setMbViewDirect}) {
 
     const [delivery,SetDelivery] = useState(false);
+    const [otpConformOnHide,setotpConformOnHide] = useState(false);
     
     useEffect(() => {
         
@@ -34,8 +35,8 @@ export default function Delivery({Cartdetails,formattedAmount,handleClose}) {
     
   return (
     <>
-          <div>
-              <ul className="nav nav-tabs">
+          <div >
+              <ul className={`${otpConformOnHide ? 'd-none' : '' } nav nav-tabs`}>
                   <li className="nav-item">
                       <a className="nav-link d-flex justify-content-center align-items-center gap-2 actives" href="#" name='Pickup' onClick={((e) => SetDelivery(false))}><div className='pickupOption'><img src='assests/pickup.png' className='w-100' alt='no image found' /></div>Pickup</a>
                   </li>
@@ -45,7 +46,12 @@ export default function Delivery({Cartdetails,formattedAmount,handleClose}) {
               </ul>
 
               <div className='w-100'>
-                  {delivery ? <DeliveryDetails CartdetailstoDelivery={Cartdetails}  formattedAmount={formattedAmount} handleClose={handleClose}/> : <PickupDelivery CartdetailstoDelivery={Cartdetails} formattedAmount={formattedAmount} handleClose={handleClose}/>}
+                  {delivery
+                   ? 
+                  <DeliveryDetails CartdetailstoDelivery={Cartdetails}  formattedAmount={formattedAmount} handleClose={handleClose} deviceToken={deviceToken}/>
+                   : 
+                  <PickupDelivery CartdetailstoDelivery={Cartdetails} formattedAmount={formattedAmount} handleClose={handleClose} deviceToken={deviceToken} setotpConformOnHide={setotpConformOnHide} setMbViewDirect={setMbViewDirect}
+                  />}
               </div>
           </div>
     </>

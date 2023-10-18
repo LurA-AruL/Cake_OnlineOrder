@@ -424,71 +424,36 @@ function TestingPagelodaing({ Cartdetails,s ,removeFromCart, addToCart, formatte
                                   </div>
 
                                   <div>
-                                        {currentData.quentity}
+                                {currentData.quentity}
                                   </div>
                                     {/* // Add the "Add Text" button here */}
-                                    <div className='transitionForaddBtn'> 
-                          
-                                    {currentData.quantity !== checkNumber ? (          
-                                                cart.map(event => (
-                                                    <>
-                                                    {event.item_id === currentData.product_id  ? 
-                                                      <div className='btn border fw-bold addBtnAfter d-flex justify-content-between border-secondary position-relative'>
-                                                        {event.item_qty > 0 ? (
-                                                          <>
-                                                            <button className='btn fw-bold border-none p-0 m-0' onClick={() => {removeFromCart(event);minusvalueset(currentData,event.item_qty)}}>-</button>
-                                                            <span>{event.item_qty}</span>
-                                                            <button className='btn fw-bold border-none p-0 m-0' onClick={() => addToCart(event)}>+</button>
-                                                          </>
-                                                        ) : (
-                                                          <></>
-                                                        )}
-                                                        <div className={`${addAnimi === true  ? 'sun' : 'd-none' } position-absolute bottom-0 w-25`}></div>
-                                                      </div>
-                                                      : 
-                                                      <></>
-                                                    }
-                                                  </>
-                                            ))
-                                          ) : (
-                                            // Add this line to check if the function is called
-                                                // <button onClick={() => { handleAddTextClick(currentData); console.log(apiData); }} className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white'>Add Text</button>
-                                        <button
-                                            id='AddBtn'
-                                            className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white '
-                                            onClick={(e, BtnIndex) => {addToCart({
-                                          item_id: currentData.product_id,
-                                          item_name: currentData.product_name,
-                                          item_price: currentData.product_sale_price,
-                                          item_qty: currentData.product_status,
-                                          item_image: currentData.produt_image_url,
-                                        });handleAddTextClick(currentData)}}
-                                      >
-                                        {buttonText}
-                                      </button>
-                                          )}
-                                    {/* ------------------------------- */}
-                                    {/* <div className='pe-2'>
-                                     {
-                                        !testing ? 
-                                         <button
-                                        id='AddBtn'
-                                        className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white'
-                                        onClick={(e, BtnIndex) => addToCart({
-                                          item_id: currentData.product_id,
-                                          item_name: currentData.product_name,
-                                          item_price: currentData.product_sale_price,
-                                          item_qty: currentData.product_status,
-                                          item_image: currentData.produt_image_url,
-                                        })}
-                                      >
-                                        {buttonText}
-                                      </button> : 
-                                      <>hai</>
-                                     }
-                                    </div> */}
-                                {/* //   )} */}
-                                </div>
+                                    <div className='transitionForaddBtn'>
+  {cart.find(item => item.item_id === currentData.product_id) ? (
+    <div className='btn border fw-bold addBtnAfter d-flex justify-content-between border-secondary position-relative'>
+      <button className='btn fw-bold border-none p-0 m-0'   onClick={() => removeFromCart({item_id:currentData.product_id})}>-</button>
+      <span>{cart.find(item => item.item_id === currentData.product_id).item_qty}</span>
+      <button className='btn fw-bold border-none p-0 m-0'  onClick={() => addToCart({item_id:currentData.product_id})}>+</button>
+      <div className={`${addAnimi === true ? 'sun' : 'd-none'} position-absolute bottom-0 w-25`}></div>
+    </div>
+  ) : (
+    <button
+      id='AddBtn'
+      className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white'
+      onClick={(e, BtnIndex) => {
+        addToCart({
+          item_id: currentData.product_id,
+          item_name: currentData.product_name,
+          item_price: currentData.product_sale_price,
+          item_qty: currentData.product_status,
+          item_image: currentData.produt_image_url,
+        });
+        handleAddTextClick(currentData);
+      }}
+    >
+      {buttonText}
+    </button>
+  )}
+</div>
                                 </div>
                                 <div className='position-absolute top-100 start-50 translate-middle'>
                                   {/* Add the "Add Text" button here if needed */}
@@ -588,10 +553,10 @@ function TestingPagelodaing({ Cartdetails,s ,removeFromCart, addToCart, formatte
                         <div className="modal-dialog modal-fullscreen-sm-down" role="document">
                             <div className="modal-content">
                                 {/* ----------------- display  modal body -------- */}
-                                <div className="modal-body d-flex  justify-content-center align-items-center">
+                                <div className="modal-body">
                                     {/* ----------------- display  carts views-------- */}
-
-                                     <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} CartEmptyAfterOtpSub={CartEmptyAfterOtpSub}/> 
+                                        <Delivery formattedAmount={formattedAmountSendToMb} setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} CartEmptyAfterOtpSub={CartEmptyAfterOtpSub}  />
+                                     {/* <ConformationForm   setMbViewDirect={setMbViewDirect} deviceToken={deviceToken} CartEmptyAfterOtpSub={CartEmptyAfterOtpSub}/>  */}
                                 </div>
                             </div>
                         </div>
