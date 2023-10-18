@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -18,11 +17,16 @@ import SuccessMsg from './SuccessMsg';
 import ConformationForm from './ConformationForm';
 
 
-function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart ,CartEmptyAfterOtpSub}) {
+function TestingPagelodaing({ Cartdetails,s ,removeFromCart, addToCart, formattedAmountSendToMb, filteredData, itemsSearchValue, buttonText,alertOfAddCart ,CartEmptyAfterOtpSub,testing,addAnimi}) {
 
     const successMessage = 'Successfully Added.';
 
     const [cart, setCart] = useState(Cartdetails);
+
+    // -----------------------------------------  cart Add to button show or hide states
+    const [defaultQuentity,setDefaultQuentity] = useState(0)
+    const [checkNumber,setcheckNumber] = useState(0)
+    
      //--------------------------------- Axois Api key  -----------------------
      const [apiData, setApiData] = useState([]);
      const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -59,7 +63,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
    // device Token =----------------
    const [deviceToken,setDeviceToken] = useState();
-   const [CheckToken,setCheckToken] = useState()
+   const [CheckToken,setCheckToken] = useState();
 
     
 
@@ -86,7 +90,12 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
-            console.log(data.products,'data.............................');
+
+            const formattedData = data.products.map(item => ({
+                ...item,
+                quantity: 0
+            }));
+            // console.log(data.products,'data.............................');
             
             setIsLoading(true);
             setIsLoadingPage(false);
@@ -122,9 +131,15 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
             //     return uniqueData;
             // });
 
-            setApiData(data.products)
-            
 
+            //-------------------------------- trying some 
+
+            // setApiData(data.products)   
+            
+            setApiData(formattedData);
+
+            // -----------------------------------end get apidata
+            
             setStorage(apiData);
         } catch (error) {
             console.error('Error fetching API values:', error);
@@ -133,6 +148,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
             setIsLoading(false);
         }
     };
+
 
     useEffect(() => {
         fetchMoreValues();
@@ -151,34 +167,34 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
 
    
 
-    const handleScroll = () => {
-        if (!isLoading) {
-            const current_Page = page;
-            const scrollY = window.scrollY || window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
+    // const handleScroll = () => {
+    //     if (!isLoading) {
+    //         const current_Page = page;
+    //         const scrollY = window.scrollY || window.pageYOffset;
+    //         const windowHeight = window.innerHeight;
+    //         const documentHeight = document.documentElement.scrollHeight;
 
-            if(onscrolling === true){
-            // if (2 >= categoryIndex) {
-                if (scrollY + windowHeight >= documentHeight - 100) {
-                    fetchMoreValues();
-                    setPage(current_Page + 1);
-                }
-            }
-        }
-    };
+    //         if(onscrolling === true){
+    //         // if (2 >= categoryIndex) {
+    //             if (scrollY + windowHeight >= documentHeight - 100) {
+    //                 fetchMoreValues();
+    //                 setPage(current_Page + 1);
+    //             }
+    //         }
+    //     }
+    // };
 
     // Attach the event listener to the scroll event
-    useEffect(() => {
-        console.log('handleScroll......');
-        window.addEventListener('scroll', handleScroll);
+    // useEffect(() => {
+    //     console.log('handleScroll......');
+    //     window.addEventListener('scroll', handleScroll);
 
-        // Remove the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+    //     // Remove the event listener when the component unmounts
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
         
-    }, [handleScroll]);
+    // }, [handleScroll]);
 
     // -----------------------------------------------
     useEffect(() => {
@@ -212,7 +228,6 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
             
         } else{
             setApiData(storage);
-            console.log('hello');
             SetEndOfCartText(true);
         }
         }
@@ -239,7 +254,7 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         try {
             // const response = await axios.get(`https://zukachocolates.com/wp-json/wc/v3/products/categories?consumer_key=ck_96cb3ae76e2e7faa977b08924c460f4409a5385e&consumer_secret=cs_0f78e3a6d65f0caeb6b3551a18e9285bbb6d9b5a&page=1&per_page=30`);
             const response = await axios.get(`https://digitalfactory.co.in/dfi/api/products?get_product_cat=0`);
-            console.log(response.data.article_cat_details,'resposen..................................');
+            // console.log(response.data.article_cat_details,'resposen..................................');
             setListCategories(response.data.article_cat_details.map(e => e.prod_category_name));
             // setListCategories(response.data.filter(e => e.count !== 0));
             //   console.log(response.data.filter(e => e.count !== 0).map(e => e.id),'Categories list');
@@ -321,9 +336,9 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         };
 
     const handleRandomDevice = () => {
-        console.log(deviceToken ,'hello');
-        console.log(deviceToken === undefined ,'hello');
-        console.log(deviceToken === null ,'hello');
+        // console.log(deviceToken ,'hello');
+        // console.log(deviceToken === undefined ,'hello');
+        // console.log(deviceToken === null ,'hello');
 
         if(deviceToken === undefined){
             const generateRandom = generateRandomToken(30);
@@ -332,6 +347,30 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
         setMbViewDirect(true);
     }
 
+    // add button try
+    
+      const handleAddTextClick = (itemId) => {
+        // console.log('handleAddTextClick called for itemId:', itemId.product_id);
+        setApiData((prevItems) =>
+          prevItems.map((item) =>
+          item.product_id === itemId.product_id ? {...item, quantity : 1} : item
+        //   item.product_id === itemId.product_id ? { ...item, product_status: 0 } : item
+          )
+        );
+      };
+
+      const minusvalueset = (itemId,item_qty) => {
+        // console.log(checkNumber);
+        // console.log(item_qty);
+        // console.log('hello:', itemId.product_id);
+        if(item_qty <= 1){
+        setApiData((prevItems) =>
+          prevItems.map((item) =>
+          item.product_id === itemId.product_id ? { ...item, quantity: checkNumber } : item
+          )
+        );
+    }
+      };
 
     return (
         <>
@@ -369,36 +408,95 @@ function TestingPagelodaing({ Cartdetails, removeFromCart, addToCart, formattedA
                     isLoadingPage ? (
                         <SkeletonCard />
                     ) : (
-
-
                         apiData.map((currentData, index) => (
                             <div className="card col-1 my-lg-1 border-0 cardOuterWrapper api-item mb-2" style={{ width: 17 + "rem" }} key={currentData.product_id}>
-                                <div className='ImageWrapper'>
-                                    <div className='ImageInner'>
-                                        {/* <i className="bi bi-heart-fill position-absolute  hearticon text-white" id='heart'></i> onClick={(color) => handleHeartAdd(currentData,color.target.id)} */}
-                                        <img src={currentData.produt_image_url} className="card-img-top cart_imgae" alt="no image found" />
-                                        {/* <img src={currentData.images.length > 1 ? currentData.images[0].src : currentData.images.map(e => e.src)} className="card-img-top cart_imgae" alt="no image found" /> */}
-                                    </div>
+                              <div className='ImageWrapper'>
+                                <div className='ImageInner'>
+                                  <img src={currentData.produt_image_url} className="card-img-top cart_imgae" alt="no image found" />
                                 </div>
-                                <div className="card-body px-0 d-flex flex-column justify-content-center d-lg-bolck">
-                                    <div className='d-flex justify-content-between'>
-                                        <div className='d-flex flex-column  px-2'>
-                                            <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.product_name.slice(0,40)}...</h5>
-                                            <span className='CartPriceHome pt-1 fw-bold'>{currentData.product_sale_price ? "Price: " + currentData.product_sale_price : <></>}</span>
-                                            <span className='CartPriceHome text-decoration-line-through'>{currentData.product_regular_price && currentData.product_regular_price !== currentData.product_sale_price ? "Regular Price: " + currentData.product_regular_price : <></>}</span>
-                                            {/* <div className='pt-2 fst-italic fw-light'>{currentData.short_description.slice(' ').slice(3,42)}...</div> */}
-                                        </div>
-                                        <div className='pe-2'><button id='AddBtn' className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white' onClick={(e, BtnIndex) => addToCart({ item_id: currentData.product_id, item_name: currentData.product_name, item_price: currentData.product_sale_price, item_qty: currentData.product_status, item_image: currentData.produt_image_url })}>{buttonText}</button></div></div>
+                              </div>
+                              <div className="card-body px-0 d-flex flex-column justify-content-center d-lg-bolck">
+                                <div className='d-flex justify-content-between'>
+                                  <div className='d-flex flex-column  px-1'>
+                                    <h5 className="Shoping_cartTitle fw-bold card-title p-0 m-0">{currentData.product_name.slice(0,40)}...</h5>
+                                    <span className='CartPriceHome pt-1 fw-bold'>{currentData.product_sale_price ? "Price: " + currentData.product_sale_price : <></>}</span>
+                                    <span className='CartPriceHome text-decoration-line-through'>{currentData.product_regular_price && currentData.product_regular_price !== currentData.product_sale_price ? "Regular Price: " + currentData.product_regular_price : <></>}</span>
+                                  </div>
 
-                                    <div className='position-absolute top-100 start-50 translate-middle'>
-
-                                        {/* {chageFoodItems === true ?  <FdItemIncrSamecart  setChageFoodItems={setChageFoodItems}/> : <></>}  */}
-                                    </div>
-                                    <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.product_description.slice(0, 50)+'...' }} />
+                                  <div>
+                                        {currentData.quentity}
+                                  </div>
+                                    {/* // Add the "Add Text" button here */}
+                                    <div className='transitionForaddBtn'> 
+                          
+                                    {currentData.quantity !== checkNumber ? (          
+                                                cart.map(event => (
+                                                    <>
+                                                    {event.item_id === currentData.product_id  ? 
+                                                      <div className='btn border fw-bold addBtnAfter d-flex justify-content-between border-secondary position-relative'>
+                                                        {event.item_qty > 0 ? (
+                                                          <>
+                                                            <button className='btn fw-bold border-none p-0 m-0' onClick={() => {removeFromCart(event);minusvalueset(currentData,event.item_qty)}}>-</button>
+                                                            <span>{event.item_qty}</span>
+                                                            <button className='btn fw-bold border-none p-0 m-0' onClick={() => addToCart(event)}>+</button>
+                                                          </>
+                                                        ) : (
+                                                          <></>
+                                                        )}
+                                                        <div className={`${addAnimi === true  ? 'sun' : 'd-none' } position-absolute bottom-0 w-25`}></div>
+                                                      </div>
+                                                      : 
+                                                      <></>
+                                                    }
+                                                  </>
+                                            ))
+                                          ) : (
+                                            // Add this line to check if the function is called
+                                                // <button onClick={() => { handleAddTextClick(currentData); console.log(apiData); }} className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white'>Add Text</button>
+                                        <button
+                                            id='AddBtn'
+                                            className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white '
+                                            onClick={(e, BtnIndex) => {addToCart({
+                                          item_id: currentData.product_id,
+                                          item_name: currentData.product_name,
+                                          item_price: currentData.product_sale_price,
+                                          item_qty: currentData.product_status,
+                                          item_image: currentData.produt_image_url,
+                                        });handleAddTextClick(currentData)}}
+                                      >
+                                        {buttonText}
+                                      </button>
+                                          )}
+                                    {/* ------------------------------- */}
+                                    {/* <div className='pe-2'>
+                                     {
+                                        !testing ? 
+                                         <button
+                                        id='AddBtn'
+                                        className='btn border fw-bold plubtn d-inline px-3 px-lg-3 text-white'
+                                        onClick={(e, BtnIndex) => addToCart({
+                                          item_id: currentData.product_id,
+                                          item_name: currentData.product_name,
+                                          item_price: currentData.product_sale_price,
+                                          item_qty: currentData.product_status,
+                                          item_image: currentData.produt_image_url,
+                                        })}
+                                      >
+                                        {buttonText}
+                                      </button> : 
+                                      <>hai</>
+                                     }
+                                    </div> */}
+                                {/* //   )} */}
                                 </div>
+                                </div>
+                                <div className='position-absolute top-100 start-50 translate-middle'>
+                                  {/* Add the "Add Text" button here if needed */}
+                                </div>
+                                <div className='pt-2 px-2 fst-italic fw-light' dangerouslySetInnerHTML={{ __html: currentData.product_description.slice(0, 25)+'...' }} />
+                              </div>
                             </div>
-                        )
-                        ))}
+                          )))}
 
             </div>
 

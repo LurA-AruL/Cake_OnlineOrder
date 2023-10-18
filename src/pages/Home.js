@@ -12,6 +12,7 @@ import ConformationForm from '../components/ConformationForm';
 export default function Home({inputRef,cartItems}) {
 
   // const api = "http://localhost:5000/comments";
+  const [s,sets] = useState('1')
 
   const [cart, setCart] = useState([]);
   // const [totalAmount, SetTotalAmount] = useState([]);
@@ -39,15 +40,49 @@ export default function Home({inputRef,cartItems}) {
 
      // device Token =----------------
    const [deviceToken,setDeviceToken] = useState();
+   const [CheckToken,setCheckToken] = useState();
+
+   
 
 
     //  otpm submit then carts value none call state
 
     const [cartEmptyAfterOtpSub,setCartEmptyAfterOtpSub] = useState(false)
 
+    // testing remove add text....
+    const [testing,settesting] = useState(false)
+
+    // add animation for bottom
+    const [addAnimi,setAnimi] = useState(false);
+
+
+    function generateRandomToken(length) {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      token += characters.charAt(randomIndex);
+      }
+      return token;
+     }
+
+     const DeviceTokeFun = (token) => {
+
+        
+      // Update the cart in component state
+      setDeviceToken(token);
+      // Update the cart in localStorage
+      localStorage.setItem('DeviceToken', JSON.stringify(token));
+      
+      // cart value increase
+      };
+
     const handleShow = () => {
       setShow(true);
-      
+      if(deviceToken === undefined){
+        const generateRandom = generateRandomToken(30);
+        DeviceTokeFun(generateRandom);
+    }
     };
 
 
@@ -57,10 +92,17 @@ export default function Home({inputRef,cartItems}) {
     // Load the cart from localStorage when the component mounts
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
+
      //  ------------------------------Api get Method---------------------
      fetchData();
+     localStorage.setItem('DeviceToken', JSON.stringify(''));
   }, [cartEmptyAfterOtpSub]);
 
+  useEffect(() => {
+    // get device token
+    const deviceToken = JSON.parse(localStorage.getItem('DeviceToken')) || [];
+    setCheckToken(deviceToken);
+},[])
     //  ---------------------------------- Fetch Api Axois Methods -------------------------
 
     const fetchData = async () => {
@@ -133,12 +175,15 @@ const updateCart = (updatedCart) => {
   // cart value increase
 };
 
+// anime function 
+
   // ---------------------------------- Aside and Main Carts items Adding function here --------------------------------
   const addToCart = (item) => {
     // Check if the item is already in the cart
     const existingItemIndex = cart.findIndex((cartItem) => cartItem.item_id === item.item_id);
 
     if (existingItemIndex !== -1) {
+      
       // Item is already in the cart, update its quantity
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].item_qty += 1;
@@ -153,9 +198,9 @@ const updateCart = (updatedCart) => {
 
     // --------------------- set Toasted toggle -------------------------- 
     setAlertOfAddCart(true);
-
+    setAnimi(true);
     setTimeout(() => {
-
+    setAnimi(false);
       setAlertOfAddCart(false);
 
     }, 1500);
@@ -173,6 +218,7 @@ const updateCart = (updatedCart) => {
       updatedCart[existingItemIndex].item_qty -= 1;
 
       if (updatedCart[existingItemIndex].item_qty === 0) {
+        sets('1');
         updatedCart.splice(existingItemIndex, 1);
       }
 
@@ -218,7 +264,8 @@ const updateCart = (updatedCart) => {
                 <img src="zukaImage/banner2_smallScale.png" className="panner_image d-lg-none" alt="no image found" />
               </div>
             </div>
-          </div>
+          </div> 
+  
 
           {/* ------------------------------------- The Avaible items Filters Buttom components here---------------------  */}
                   {/* if you want set the Avaible items Filters Buttom here */}
@@ -226,7 +273,7 @@ const updateCart = (updatedCart) => {
           {/*------------------------------------- The Available cart Item Displays components here---------------------  */}
           <div className='d-flex gap-2 flex-wrap py-2 card_Main position-relative'>
             
-            <TestingPagelodaing Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub}/>
+            <TestingPagelodaing Cartdetails={cart} s={s} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText} alertOfAddCart={alertOfAddCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub} testing={testing} addAnimi={addAnimi}/>
             {/* <ShoppingCart Cartdetails={cart} addToCart={addToCart} removeFromCart={removeFromCart} formattedAmountSendToMb={formattedAmount} filteredData ={filteredData} itemsSearchValue={itemsSearch} buttonText={buttonText}/> */}
           </div>
 
@@ -240,7 +287,7 @@ const updateCart = (updatedCart) => {
         </Modal.Header>
         <Modal.Body>
                 {/* <Delivery  handleClose={handleClose}/> */}
-                <ConformationForm    setCart={updateCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub}/> 
+                <ConformationForm    setCart={updateCart} CartEmptyAfterOtpSub={setCartEmptyAfterOtpSub} deviceToken={deviceToken}/> 
         </Modal.Body>
       </Modal>
         
@@ -269,7 +316,11 @@ const updateCart = (updatedCart) => {
               <div className='d-flex flex-column px-3 cartItems_Scroll overflow-auto'>
                 {/* {cart.length} */}
                 {cart.length == 0 ?
-                  <img src='assests/emtycart.gif' className='w-100' alt='no image' /> 
+                  <div className='mx-auto w-75 text-center ' >
+                  <img src="assests/emptyCart_moblieView.png" className='w-100  m-auto front_corsur ' alt='no image found' />
+                  <p>Your Cart is empty!</p>
+                  {/* <p>Looks like you haven't added any items <br/> to your cart yet.</p> */}
+              </div>
                   :
                   cart.map((e, index) => (
                     <div className="card border-0 mb-1" style={{ maxWidth: 300 + "px" }} key={index}>

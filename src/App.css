@@ -9,6 +9,8 @@
 
 
 
+
+
   /*---------------- promotion text---------------- */
 
   .promotionText{
@@ -139,6 +141,7 @@ input:focus
 }
 .asideBg_color{
   background-color: rgba(221, 221, 221,0.598);
+  /* background-color: rgba(221, 221, 221,0.198); */
 }
 .asideBg_color_footer{
   background-color: rgba(221, 221, 221,0.998);

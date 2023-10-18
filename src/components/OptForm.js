@@ -67,7 +67,7 @@ export default function OptForm({OtpNumber,setMbViewDirect,customerPhNo,orderite
 
     const handlePostRequest = async () => {
 
-
+console.log(deviceToken ,'deviceToken')
       // Define the data you want to send in the POST request
 const data = {
   verify_device_token:deviceToken,
@@ -124,8 +124,8 @@ if(response.data.status === 'success')
   return (
     <>
     {successAlt === true ?<div className='text-center text-success fw-bold'> <img src='assests/orderSucess.gif' className='w-100' alt='no image' /> <h6>Order Placed SuccessFully</h6></div> :
-    <div className='w-100 shadow rounded p-lg-5'>
-        <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column" noValidate autoComplete='off'>
+    <div className='w-100 shadow rounded p-lg-5 otpFormWrapper'>
+        <form onSubmit={handleOptCheck} className="needs-validation W-100 d-flex flex-column gap-3" noValidate autoComplete='off'>
                 <div className="mb-3">
                   <div className='d-flex justify-content-between mb-3'>
                   <label htmlFor="sixDigitInput" className="form-label fw-bold">Enter OTP sent to '<span className='customer_number'>{customerPhNo}</span>'</label>
@@ -149,7 +149,7 @@ if(response.data.status === 'success')
                 {timers ? <div className='resend_otp fw-bold pt-2 cursor_pointer' onClick={reGenerateOtp}> RESEND OTP <span className='fw-normal ps-2'>in 0:0s</span> </div>: <div className='text-secondary fw-bold pt-2'>RESEND OTP <span className='fw-normal ps-2'>in 0:{seconds}s</span></div>}
                 
                 </div>
-                <button type="submit" className="btn otp_submit">CONTINUE</button>
+                <button type="submit" className="btn otp_submit py-2">CONTINUE</button>
             </form>
     </div>
     }
